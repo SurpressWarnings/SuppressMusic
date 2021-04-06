@@ -15,10 +15,6 @@ public class MusicNotFoundException extends RuntimeException implements Supplier
       this.fieldNotFound = fieldNotFound;
    }
 
-   public String getFieldNotFound() {
-      return fieldNotFound;
-   }
-
    @Override
    public String get() {
       return fieldNotFound;
