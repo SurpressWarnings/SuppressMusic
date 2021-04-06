@@ -10,7 +10,7 @@ body{
 .loginbox{
     width: 320px;
     height: 420px;
-    background: rgb(2, 100, 124);
+    background: rgb(2, 100, 124, 0.85);
     color: rgb(255, 255, 255);
     border: 3px solid #fbc225;
     top: 50%;
@@ -36,6 +36,7 @@ h1{
     padding: 0 0 20px;
     text-align: center;
     font-size: 22px;
+    color: #fbc225;
 }
 
 .loginbox p{
@@ -90,4 +91,7 @@ h1{
 .loginbox ::placeholder { 
     color: rgb(109, 109, 109);
     opacity: 1;
+  }
+  p{
+    color: #fbc225;
   }
