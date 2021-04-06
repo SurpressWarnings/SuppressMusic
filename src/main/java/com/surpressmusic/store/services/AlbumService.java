@@ -1,5 +1,6 @@
 package com.surpressmusic.store.services;
 
+import com.surpressmusic.store.exceptions.MusicNotFoundException;
 import com.surpressmusic.store.model.Album;
 import com.surpressmusic.store.repositories.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
