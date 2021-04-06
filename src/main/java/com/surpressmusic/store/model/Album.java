@@ -9,16 +9,19 @@ public class Album {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name="album_id")
+   @Column(name="album_id", nullable = false)
    private Integer id;
 
-   @Column(name="album")
+   @Column(name="album", nullable = false)
    private String albumTitle;
 
-   @Column(name="genre")
-   private String genre;
+   @OneToOne
+   @JoinTable(name="album_genre", joinColumns = @JoinColumn(name="album_id"),
+      inverseJoinColumns = @JoinColumn(name="genre_id"))
+   private Genre genre;
 
-   @OneToMany(mappedBy = "albums")
+   @OneToMany
+   @JoinColumn(name="song_id", nullable = true)
    private List<Song> songs;
 
 }

@@ -11,23 +11,24 @@ public class Song {
    @Column(name="song_id")
    private Integer id;
 
-   @Column
+   @Column(nullable = false)
    private String artist;
 
-   @Column(name="song")
+   @Column(name="song", nullable = false)
    private String songTitle;
 
    @Column
    private String format;
 
-   @Column
-   private String genre;
+   @ManyToOne
+   @JoinTable(name="song_genre", joinColumns = @JoinColumn(name="song_id"),
+      inverseJoinColumns = @JoinColumn(name="genre_id"))
+   private Genre genre;
 
-   @Column
+   @Column(nullable = false)
    private float price;
 
    @ManyToOne
-   @JoinColumn(name="album_id", nullable = true)
-   private String album;
-
+   @JoinColumn(name="album_id")
+   private Album album;
 }
