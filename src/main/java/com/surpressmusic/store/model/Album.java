@@ -12,8 +12,8 @@ public class Album {
    @Column(name="album_id")
    private Integer id;
 
-   @Column
-   private String name;
+   @Column(name="album")
+   private String albumTitle;
 
    @Column(name="genre")
    private String genre;

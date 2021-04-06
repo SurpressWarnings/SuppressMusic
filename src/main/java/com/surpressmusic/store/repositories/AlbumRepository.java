@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlbumRepository extends CrudRepository<Album, Integer> {
+   Album findByAlbumTitle(String albumTitle);
 }

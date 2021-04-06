@@ -14,8 +14,8 @@ public class Song {
    @Column
    private String artist;
 
-   @Column
-   private String title;
+   @Column(name="song")
+   private String songTitle;
 
    @Column
    private String format;
