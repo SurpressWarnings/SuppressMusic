@@ -18,10 +18,13 @@ public class AlbumService {
       return albumRepo.findAll();
    }
 
-   public Album getByTitle(String title) throws MusicNotFoundException {
+   public Album getByTitle(String title) { //throws MusicNotFoundException {
       Optional<Album> foundAlbum = Optional.ofNullable(albumRepo.findByTitle(title));
-
+      
+    		 
+      
       return foundAlbum.orElseGet(Album::new);
+      
    }
 
    public List<Album> getByGenre(String genre) {
@@ -32,9 +35,9 @@ public class AlbumService {
       return albumRepo.findByArtist(artist);
    }
 
-   public Album getBySong(String song) throws MusicNotFoundException {
-      Optional<Album> foundAlbum = Optional.ofNullable(albumRepo.findBySong(song));
-
-      return foundAlbum.orElseGet(Album::new);
-   }
+//   public Album getBySong(String song) { //throws MusicNotFoundException {
+//      Optional<Album> foundAlbum = Optional.ofNullable(albumRepo.findBySong(song));
+//
+//      return foundAlbum.orElseGet(Album::new);
+//   }
 }
