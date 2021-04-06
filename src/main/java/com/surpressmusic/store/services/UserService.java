@@ -24,7 +24,7 @@ public class UserService {
    }
 
    public User getUserByUsername(String username) throws UserNotFoundException {
-      Optional<User> foundUser = Optional.ofNullable(userRepo.findByUsername(email));
+      Optional<User> foundUser = Optional.ofNullable(userRepo.findByUsername(username));
 
       return foundUser.orElseGet(User::new);
    }

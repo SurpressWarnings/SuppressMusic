@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS albums (
 
 CREATE TABLE IF NOT EXISTS genres (
   genre_id int NOT NULL AUTO_INCREMENT,
-  genre int DEFAULT NOT NULL,
+  genre VARCHAR(255) DEFAULT NOT NULL,
   PRIMARY KEY (genre_id)
 );
 

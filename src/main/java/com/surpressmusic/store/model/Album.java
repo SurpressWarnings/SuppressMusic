@@ -12,8 +12,11 @@ public class Album {
    @Column(name="album_id", nullable = false)
    private Integer id;
 
-   @Column(name="album", nullable = false)
-   private String albumTitle;
+   @Column(name="album_title", nullable = false)
+   private String title;
+
+   @Column(name="artist", nullable = false)
+   private String artist;
 
    @OneToOne
    @JoinTable(name="album_genre", joinColumns = @JoinColumn(name="album_id"),

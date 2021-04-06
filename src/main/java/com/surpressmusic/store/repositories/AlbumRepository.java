@@ -17,5 +17,5 @@ public interface AlbumRepository extends JpaRepository<Album, Integer> {
 
    List<Album> findByArtist(String artist);
 
-   Album findBySong(String song);
+//   Album findBySong(String song);
 }
