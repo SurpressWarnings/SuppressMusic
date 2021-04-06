@@ -1,6 +1,6 @@
 package com.surpressmusic.store.services;
 
-import com.surpressmusic.store.exceptions.InvalidLoginException;
+import com.surpressmusic.store.exceptions.UserNotFoundException;
 import com.surpressmusic.store.model.User;
 import com.surpressmusic.store.repositories.RoleRepository;
 import com.surpressmusic.store.repositories.UserRepository;
@@ -23,7 +23,7 @@ public class UserService {
       return userRepo.findAll();
    }
 
-   public User getUserByUsername(String email) throws InvalidLoginException {
+   public User getUserByUsername(String username) throws UserNotFoundException {
       Optional<User> foundUser = Optional.ofNullable(userRepo.findByUsername(email));
 
       return foundUser.orElseGet(User::new);
