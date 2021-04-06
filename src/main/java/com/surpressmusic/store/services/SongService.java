@@ -17,8 +17,26 @@ public class SongService {
       return songRepo.findAll();
    }
 
-//   public List<Song> getSongByTitle(String title) {
-//   }
-//
-//   public List<Song> getSongsBy
+   public Song getSongByTitle(String title) {
+      return songRepo.findBySongTitle(title);
+   }
+
+   public List<Song> getSongsByArtist(String artist) {
+      return songRepo.findByArtist(artist);
+   }
+
+   public List<Song> getSongsByGenre(String genre) {
+      return songRepo.findByGenre(genre);
+   }
+
+   public List<Song> getSongsByFormat(String format) {
+      return songRepo.findByFormat(format);
+   }
+
+   public List<Song> getSongsByPriceRange(String min, String max) throws NumberFormatException {
+      Integer minInt = Integer.parseInt(min);
+      Integer maxInt = Integer.parseInt(max);
+
+      return songRepo.findByPrice(minInt, maxInt);
+   }
 }
