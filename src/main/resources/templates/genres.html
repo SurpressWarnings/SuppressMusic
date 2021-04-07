@@ -2,15 +2,19 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+    <link rel="stylesheet" href="/css/genrestyle.css">
 <head>
    <meta charset="UTF-8">
    <title>Surpress Music - Browse By Genre</title>
 </head>
 <body>
+    <h1>Genres</h1>
+    <p>Select a genre</p>
 <form action="/browseByGenre" method="POST">
    <ul th:each="name: ${genreNames}">
       <li>
-         <button type="submit" value="${name}"><span th:text="${name}"></span></button>
+         <button id="but" type="submit" value="${name}"><span th:text="${name}"></span></button>
+         
       </li>
 
    </ul>

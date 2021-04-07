@@ -1,0 +1,53 @@
+body{
+ background-image:url('../images/capstonepicmaybe.png');
+     background-size:cover;
+    background-position:center;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    /* justify-content:center; */
+    align-items:center;
+    /* text-align:center; */
+    padding:0 20px;
+  }
+
+  h1{
+    margin: 0;
+    padding: 0 0 20px;
+    /* text-align: center; */
+    font-size: 22px;
+    color: #fbc225;
+    background-color: rgba(68, 68, 68, 0.2);
+    
+}
+
+p{
+    color: #fbc225;
+    font-size: 20px;
+        background-color: rgba(68, 68, 68, 0.2);
+    
+  }
+
+#but{
+    font-size:14px;
+    text-decoration:none;
+    color:#fbc225;
+    border:#ffffff 1px solid;
+    padding:5px 10px;
+    border-radius:5px;
+    margin-top:5px;
+    background-color: rgb(2, 100, 124);
+  }
+  
+  ul {
+  list-style: none; /* Remove default bullets */
+}
+
+ul li::before {
+  content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: #fbc225; /* Change the color */
+  font-weight: bold; /* If you want it to be bold */
+  display: inline-block; /* Needed to add space between the bullet and the text */
+  width: 1em; /* Also needed for space (tweak if needed) */
+  margin-left: -1em; /* Also needed for space (tweak if needed) */
+}
