@@ -14,6 +14,9 @@ public class Genre {
    @Column(name="genre", nullable = false)
    private String genre;
 
+   @Column(name="display_name", nullable = false)
+   private String displayName;
+
    public Integer getId() {
       return id;
    }
@@ -24,5 +27,13 @@ public class Genre {
 
    public void setGenre(String genre) {
       this.genre = genre;
+   }
+
+   public String getDisplayName() {
+      return displayName;
+   }
+
+   public void setDisplayName(String displayName) {
+      this.displayName = displayName;
    }
 }
