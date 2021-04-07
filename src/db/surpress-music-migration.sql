@@ -18,20 +18,34 @@ insert into albums (album) values
 ("Brave New World"),
 ("Reanimation");
 
-insert into genres (genre) values
-   ("POP"),
-   ("ROCK"),
-   ("LATIN"),
-   ("RNB_SOUL"),
-   ("RAP_HIPHOP"),
-   ("DANCE_ELECTRONIC"),
-   ("COUNTRY"),
-   ("HOLIDAY"),
-   ("GOSPEL_CHRISTIAN"),
-   ("JAZZ_BLUES"),
-   ("CLASSICAL"),
-   ("INTERNATIONAL"),
-   ("WORLD");
+insert into genres (genre, display_name) values
+   ("POP", "Pop"),
+   ("ROCK", "Rock"),
+   ("LATIN", "Latin"),
+   ("RNB_SOUL", "R&B / Soul"),
+   ("RAP_HIPHOP", "Rap / Hip-Hop"),
+   ("DANCE_ELECTRONIC", "Dance / Electronic"),
+   ("COUNTRY", "Country"),
+   ("HOLIDAY", "Holiday"),
+   ("GOSPEL_CHRISTIAN", "Gospel / Christian"),
+   ("JAZZ_BLUES", "Jazz / Blues"),
+   ("CLASSICAL", "Classical"),
+   ("INTERNATIONAL", "International"),
+   ("WORLD", "World");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ALTER TABLE genres
 ALTER COLUMN genre VARCHAR(255);
