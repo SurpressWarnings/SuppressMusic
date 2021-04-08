@@ -1,9 +1,14 @@
 body{
-    margin: 0;
-    padding: 0;
-    background: url("../images/capstonepicmaybe.png");
-    background-size: cover;
-    background-position: center;
+   	background-image:url('../images/capstonepicmaybe.png');
+    background-size:cover;
+    background-position:center;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 20px;
     font-family: sans-serif;
 }
 
