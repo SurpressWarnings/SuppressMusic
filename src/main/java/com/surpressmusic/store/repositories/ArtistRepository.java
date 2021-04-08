@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface ArtistRepository extends JpaRepository<Artist, Integer> {
    List<Artist> findAll();
    Optional<Artist> findById(Integer id);
+   Artist findByName(String query);
 }

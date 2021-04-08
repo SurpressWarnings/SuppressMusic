@@ -18,4 +18,8 @@ public class ArtistService {
    public List<Artist> getAllArtists() { return artistRepo.findAll(); }
 
    public Optional<Artist> getArtistById(Integer id) { return artistRepo.findById(id); }
+
+   public Artist getArtistByName(String query) {
+      return artistRepo.findByName(query);
+   }
 }

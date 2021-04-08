@@ -15,8 +15,6 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
 
    List<Song> findAll();
 
-   Song findBySongTitle(String title);
-
    List<Song> findByAlbum(Album album);
 
    List<Song> findByArtistOrderBySongTitle(String artist);
@@ -27,5 +25,4 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
 
    @Query(value = "SELECT s FROM Song s WHERE s.price >= :min AND s.price <= :max")
    List<Song> findByPrice(Integer min, Integer max);
-
 }
