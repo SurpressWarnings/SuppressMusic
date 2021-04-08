@@ -15,16 +15,56 @@ public class Album {
    @Column(name="title", nullable = false)
    private String title;
 
-   @Column(name="artist", nullable = false)
-   private String artist;
-   
    @OneToOne
-   @JoinTable(name="album_genre", joinColumns = @JoinColumn(name="album_id"),
-      inverseJoinColumns = @JoinColumn(name="genre_id"))
+   @JoinColumn(name="artist_id", nullable = false)
+   private Artist artist;
+
+   @Column(name="price")
+   private float price;
+
+   @OneToOne
+   @JoinColumn(name="genre_id", nullable=false)
    private Genre genre;
 
    @OneToMany
    @JoinColumn(name="song_id", nullable = true)
    private List<Song> songs;
 
+   public Album() {}
+
+   public Integer getId() {
+      return id;
+   }
+
+   public String getTitle() {
+      return title;
+   }
+
+   public void setTitle(String title) {
+      this.title = title;
+   }
+
+   public Artist getArtist() {
+      return artist;
+   }
+
+   public void setArtist(Artist artist) {
+      this.artist = artist;
+   }
+
+   public Genre getGenre() {
+      return genre;
+   }
+
+   public void setGenre(Genre genre) {
+      this.genre = genre;
+   }
+
+   public List<Song> getSongs() {
+      return songs;
+   }
+
+   public void setSongs(List<Song> songs) {
+      this.songs = songs;
+   }
 }

@@ -11,18 +11,18 @@ public class Genre {
    @Column(name="genre_id")
    private Integer id;
 
-   @Column(name="genre", nullable = false)
-   private String genre;
+   @Column(name="genre_type")
+   private String genreType;
 
    public Integer getId() {
       return id;
    }
 
-   public String getGenre() {
-      return genre;
+   public String getGenreType() {
+      return genreType;
    }
 
-   public void setGenre(String genre) {
-      this.genre = genre;
+   public void setGenreType(String genreType) {
+      this.genreType = genreType;
    }
 }
