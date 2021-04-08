@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="registerstyle.css">
+   <title>Register</title>
+</head>
+<body>
+   <div class="container">
+     <h2>Search</h2>
+      <div>
+         <form action="/searchSong" method="post">
+            <label for="songQuery">Search for a song by title...</label><br />
+            <input type="text" id="songQuery" name="songQuery" /><br />
+            <button type="submit">Search</button>
+         </form>
+      </div>
+      <div>
+         <form action="/searchArtist" method="post">
+            <label for="artistQuery">Search by artist...</label><br/>
+            <input type="text" id="artistQuery" name="artistQuery" /><br />
+            <button type="submit">Search</button>
+         </form>
+      </div>
+      <div>
+         <form action="/searchAlbum" method="post">
+            <label for="albumQuery">Search by album...</label>
+            <input type="text" id="albumQuery" name="albumQuery" /><br />
+            <button type="submit">Search</button>
+         </form>
+      </div>
+   </div>
+</body>
+</html>
