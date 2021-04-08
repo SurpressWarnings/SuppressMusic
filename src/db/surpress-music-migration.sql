@@ -7,7 +7,7 @@ insert into users (user_name, first_name, last_name, password) values
     ("admin1", "Jane", "Doe", "pass");
 
 insert into user_role (role_id, user_id) values
-    ( 1),
+    (1, 1),
     (2, 2);
 
 insert into albums (album) values
@@ -32,24 +32,6 @@ insert into genres (genre, display_name) values
    ("CLASSICAL", "Classical"),
    ("INTERNATIONAL", "International"),
    ("WORLD", "World");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ALTER TABLE genres
-ALTER COLUMN genre VARCHAR(255);
-
 insert into songs (artist, format, genre, price, song) values
     ("Dreamville", "DIGITAL", "RAP_HIPHOP", 0.99, "Under the Sun"),
     ("Dreamville", "DIGITAL", "RAP_HIPHOP", 0.99, "Down Bad"),
