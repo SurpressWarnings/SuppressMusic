@@ -27,15 +27,11 @@ public class User {
 	@Column(name="cc_number")
 	private String ccNumber;
 
-//	@ManyToMany(cascade = CascadeType.MERGE)
-//	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),   inverseJoinColumns = @JoinColumn(name = "role_id"))
-//	private Set<Role> roles;
+   @OneToOne
+	@JoinColumn(name="role_id")
+	private Role role;
    
-	@Column(name="roles")
-	private String roles;  
-   
-	public User(String username, String password){
-		this.roles = "USER";
+	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
@@ -95,11 +91,11 @@ public class User {
 		this.ccNumber = ccNumber;
 	}
 
-	public String getRoles() {
-		return roles;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}	
+	public void setRole(Role role) {
+		this.role = role;
+	}
 }

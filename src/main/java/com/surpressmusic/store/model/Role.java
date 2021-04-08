@@ -11,18 +11,18 @@ public class Role {
    @Column(name="role_id")
    private Integer id;
 
-   @Column(nullable = false)
-   private String role;
+   @Column(name="role_type")
+   private String roleType;
 
    public Integer getId() {
       return id;
    }
 
-   public String getRole() {
-      return role;
+   public String getRoleType() {
+      return roleType;
    }
 
-   public void setRole(String role) {
-      this.role = role;
+   public void setRoleType(String roleType) {
+      this.roleType = roleType;
    }
 }
