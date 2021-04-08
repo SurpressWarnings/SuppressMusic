@@ -15,8 +15,6 @@ public class Order {
    @Column(name = "status")
    private String status;
 
-   @OneToMany(mappedBy = "")
-   private List<Product> products;
 
 
 }

@@ -17,6 +17,8 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
 
    List<Song> findByAlbum(Album album);
 
+   Song findBySongTitle(String title);
+
    List<Song> findByArtistOrderBySongTitle(String artist);
 
    List<Song> findByGenreOrderBySongTitle(Genre genre);

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "songs")
-public class Song extends Product {
+public class Song {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,16 +65,6 @@ public class Song extends Product {
 
    public void setGenre(Genre genre) {
       this.genre = genre;
-   }
-
-   @Override
-   public float getPrice() {
-      return price;
-   }
-
-   @Override
-   public void setPrice(float price) {
-      this.price = price;
    }
 
    public Album getAlbum() {

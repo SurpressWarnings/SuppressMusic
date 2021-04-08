@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "albums")
-public class Album extends Product {
+public class Album {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,16 +50,6 @@ public class Album extends Product {
 
    public void setArtist(Artist artist) {
       this.artist = artist;
-   }
-
-   @Override
-   public float getPrice() {
-      return price;
-   }
-
-   @Override
-   public void setPrice(float price) {
-      this.price = price;
    }
 
    public Genre getGenre() {
