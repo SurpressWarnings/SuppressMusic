@@ -27,7 +27,7 @@ public class User {
 	@Column(name="cc_number")
 	private String ccNumber;
 	
-	@Column(name="roles", nullable = false)
+	@Column(name="roles")
 	private String roles;
    
 	public User(String username, String password, String firstName, String lastName) {

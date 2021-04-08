@@ -71,4 +71,8 @@ public class SearchController {
 
       return "search_results";
    }
+   @GetMapping("/search")
+   public String getSearch() {
+      return "search";
+   }
 }
