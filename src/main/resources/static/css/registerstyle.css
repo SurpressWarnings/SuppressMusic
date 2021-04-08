@@ -1,7 +1,11 @@
 * {box-sizing: border-box}
 
+body{
+	margin:0;
+}
+
  #reg{
-    background-image:url('images/capstonepicmaybe.png');
+    background-image:url('../images/capstonepicmaybe.png');
     background-size:cover;
     background-position:center;
     height:100vh;

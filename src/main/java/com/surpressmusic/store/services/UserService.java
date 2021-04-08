@@ -29,11 +29,11 @@ public class UserService {
       return foundUser.orElseGet(User::new);
    }
 
-//   public void saveUser(User user) {
+   public void saveUser(User user) {
 //      user.setPassword(encoder.encode(user.getPassword()));
 //      Set<Role> roles = new HashSet<>();
 //      roles.add(roleRepo.findByRole("USER"));
 //      user.setRoles(roles);
-//      userRepo.save(user);
-//   }
+      userRepo.save(user);
+   }
 }
