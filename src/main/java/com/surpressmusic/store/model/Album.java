@@ -18,7 +18,10 @@ public class Album {
    @OneToOne
    @JoinColumn(name="artist_id", nullable = false)
    private Artist artist;
-   
+
+   @Column(name="price")
+   private float price;
+
    @OneToOne
    @JoinColumn(name="genre_id", nullable=false)
    private Genre genre;
@@ -26,6 +29,8 @@ public class Album {
    @OneToMany
    @JoinColumn(name="song_id", nullable = true)
    private List<Song> songs;
+
+   public Album() {}
 
    public Integer getId() {
       return id;

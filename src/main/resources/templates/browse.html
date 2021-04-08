@@ -25,13 +25,13 @@
       </li>
    </ul>
 
-   <ul th:each="genre: ${genres}">
+   <ul th:each="artist: ${artists}">
       <li>
-         <form th:action="@{/browseByGenre}"
-               method="POST" th:object="${genre}">
-            <input type="hidden" name="id" th:value='${genre.id}' />
+         <form th:action="@{/browseByArtist}"
+               method="POST" th:object="${artist}">
+            <input type="hidden" name="id" th:value='${artist.id}' />
             <button type="submit">
-               <span th:text="${genre.genreType}"></span>
+               <span th:text="${artist.name}"></span>
             </button>
          </form>
       </li>
