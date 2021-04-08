@@ -14,6 +14,8 @@ public class Artist {
    @Column(name="name", nullable = false)
    private String name;
 
+   public Artist() {}
+
    public Integer getId() {
       return id;
    }

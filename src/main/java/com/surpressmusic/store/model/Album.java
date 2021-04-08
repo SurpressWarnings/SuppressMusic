@@ -27,6 +27,8 @@ public class Album {
    @JoinColumn(name="song_id", nullable = true)
    private List<Song> songs;
 
+   public Album() {}
+
    public Integer getId() {
       return id;
    }
