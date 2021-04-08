@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <title>Surpress Music - Browse By Genre</title>
+
+   <script>
+
+   </script>
+
+</head>
+<body>
+
+   <ul th:each="genre: ${genres}">
+      <li>
+         <form th:action="@{/browseByGenre}"
+               method="POST" th:object="${genre}">
+            <input type="hidden" name="id" th:value='${genre.id}' />
+            <button type="submit">
+               <span th:text="${genre.genreType}"></span>
+            </button>
+         </form>
+      </li>
+   </ul>
+
+   <ul th:each="genre: ${genres}">
+      <li>
+         <form th:action="@{/browseByGenre}"
+               method="POST" th:object="${genre}">
+            <input type="hidden" name="id" th:value='${genre.id}' />
+            <button type="submit">
+               <span th:text="${genre.genreType}"></span>
+            </button>
+         </form>
+      </li>
+   </ul>
+
+
+</body>
+</html>
