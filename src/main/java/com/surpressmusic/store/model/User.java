@@ -26,18 +26,16 @@ public class User {
 
 	@Column(name="cc_number")
 	private String ccNumber;
-
-//	@ManyToMany(cascade = CascadeType.MERGE)
-//	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),   inverseJoinColumns = @JoinColumn(name = "role_id"))
-//	private Set<Role> roles;
+	
+	@Column(name="roles", nullable = false)
+	private String roles;
    
-	@Column(name="roles")
-	private String roles;  
-   
-	public User(String username, String password){
-		this.roles = "USER";
+	public User(String username, String password, String firstName, String lastName) {
 		this.username = username;
 		this.password = password;
+		this.roles = "USER";
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 	
 	// Empty Constructor
@@ -101,5 +99,5 @@ public class User {
 
 	public void setRoles(String roles) {
 		this.roles = roles;
-	}	
+	}
 }

@@ -20,9 +20,8 @@ public class Song {
    @Column
    private String format;
 
-   @ManyToOne
-   @JoinTable(name="song_genre", joinColumns = @JoinColumn(name="song_id"),
-      inverseJoinColumns = @JoinColumn(name="genre_id"))
+   @OneToOne
+   @JoinColumn(name ="genre_id")
    private Genre genre;
 
    @Column(nullable = false)
@@ -31,4 +30,60 @@ public class Song {
    @ManyToOne
    @JoinColumn(name="album_id")
    private Album album;
+
+   public Integer getId() {
+      return id;
+   }
+
+   public String getArtist() {
+      return artist;
+   }
+
+   public void setArtist(String artist) {
+      this.artist = artist;
+   }
+
+   public String getSongTitle() {
+      return songTitle;
+   }
+
+   public void setSongTitle(String songTitle) {
+      this.songTitle = songTitle;
+   }
+
+   public String getFormat() {
+      return format;
+   }
+
+   public void setFormat(String format) {
+      this.format = format;
+   }
+
+   public Genre getGenre() {
+      return genre;
+   }
+
+   public void setGenre(Genre genre) {
+      this.genre = genre;
+   }
+
+   public float getPrice() {
+      return price;
+   }
+
+   public void setPrice(float price) {
+      this.price = price;
+   }
+
+   public Album getAlbum() {
+      return album;
+   }
+
+   public void setAlbum(Album album) {
+      this.album = album;
+   }
+
+   public String getAlbumTitle(Album album) {
+      return album.getTitle();
+   }
 }

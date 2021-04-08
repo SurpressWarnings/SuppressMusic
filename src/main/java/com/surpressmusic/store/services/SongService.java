@@ -1,5 +1,6 @@
 package com.surpressmusic.store.services;
 
+import com.surpressmusic.store.model.Genre;
 import com.surpressmusic.store.model.Song;
 import com.surpressmusic.store.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class SongService {
       return songRepo.findByArtist(artist);
    }
 
-   public List<Song> getSongsByGenre(String genre) {
+   public List<Song> getSongsByGenre(Genre genre) {
       return songRepo.findByGenre(genre);
    }
 
