@@ -26,14 +26,16 @@ public class User {
 
 	@Column(name="cc_number")
 	private String ccNumber;
-
-   @OneToOne
-	@JoinColumn(name="role_id")
-	private Role role;
+	
+	@Column(name="roles", nullable = false)
+	private String roles;
    
-	public User(String username, String password) {
+	public User(String username, String password, String firstName, String lastName) {
 		this.username = username;
 		this.password = password;
+		this.roles = "USER";
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 	
 	// Empty Constructor
@@ -91,11 +93,11 @@ public class User {
 		this.ccNumber = ccNumber;
 	}
 
-	public Role getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 }
