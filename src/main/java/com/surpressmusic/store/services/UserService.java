@@ -24,7 +24,7 @@ public class UserService {
    }
 
    public User getUserByUsername(String username) throws UserNotFoundException {
-      Optional<User> foundUser = Optional.ofNullable(userRepo.findByUsername(username));
+      Optional<User> foundUser = userRepo.findByUsername(username);
 
       return foundUser.orElseGet(User::new);
    }
@@ -36,4 +36,30 @@ public class UserService {
 //      user.setRoles(roles);
       userRepo.save(user);
    }
+   
+   public boolean existsByUserName(String username)
+   {
+   	if(userRepo.findByUsername(username).isPresent())
+   		return true;
+   	return false;
+   }
+   
+   public boolean validateCredentials(String username, String password)
+   {
+   	Optional<User> user = userRepo.findByUsername(username);
+   	
+   	if(user.get() != null && user.get().getPassword().equals(password))
+   		return true;
+   	return false;
+   }
+   
+   public boolean validateEmptyInput(String input)
+	{
+		if(input.isEmpty() || input.trim().isEmpty())
+		{
+			return false;
+		}
+		return true;
+	}
+   
 }

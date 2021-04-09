@@ -28,6 +28,11 @@ public class HomeController {
 	   return "login";
    }
    
+   @PostMapping("/login")
+   public String processLogin() {
+	   return "shoppingcart"; // Placeholder page name
+   }
+   
    @GetMapping("/register")
    public String register() {
 	   return "register";
@@ -36,14 +41,17 @@ public class HomeController {
    @PostMapping("/register")
    public String addUsers(ModelMap model, @RequestParam String firstname, @RequestParam String lastname, @RequestParam String username, 
    		@RequestParam String psw) {
-   	User u = new User();
-   	u.setFirstName(firstname);
-   	u.setLastName(lastname);
-   	u.setUsername(username);
-   	u.setPassword(psw);
-   	model.addAttribute("user", u);
-   	userService.saveUser(u);
-   	return "usersuccess";
+//   	User u = new User();
+//   	u.setFirstName(firstname);
+//   	u.setLastName(lastname);
+//   	u.setUsername(username);
+//   	u.setPassword(psw);
+	// Use User's constructor to create user
+	   
+	   	User u = new User(username, psw, firstname, lastname);
+	   	model.addAttribute("user", u);
+	   	userService.saveUser(u);
+	   	return "usersuccess";
    }  
    
 
