@@ -1,56 +1,57 @@
 package com.surpressmusic.store.model;
 
+import com.surpressmusic.store.entity.user.User;
+import com.surpressmusic.store.entity.user.UserDetailsImpl;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartInfo {
 
    private int orderNum;
+   private User user;
+   private UserDetailsImpl userDetails;
 
-   private UserBill userBilling;
+   private final List<CartLineInfo> cartLines = new ArrayList<>();
 
-   private final List<CartLineInfo> cartLines = new ArrayList<CartLineInfo>();
+   public CartInfo() {}
 
-   public CartInfo() {
-
-   }
+   public void validate() {}
 
    public int getOrderNum() {
       return orderNum;
    }
-
    public void setOrderNum(int orderNum) {
       this.orderNum = orderNum;
    }
 
-   public UserBill getUserBilling() {
-      return userBilling;
+   public User getUser() {
+      return user;
    }
-
-   public void setUserBill(UserBill userBill) {
-      this.userBill = userBill;
+   public UserDetailsImpl getUserDetails() {
+      return userDetails;
    }
 
    public List<CartLineInfo> getCartLines() {
       return this.cartLines;
    }
 
-   private CartLineInfo findLineByCode(String code) {
+   private CartLineInfo findLineByCode(Long id) {
       for (CartLineInfo line : this.cartLines) {
-         if (line.getProductInfo().getCode().equals(code)) {
+         if (line.getSongInfo().getId().equals(id)) {
             return line;
          }
       }
       return null;
    }
 
-   public void addProduct(ProductInfo productInfo, int quantity) {
-      CartLineInfo line = this.findLineByCode(productInfo.getCode());
+   public void addProduct(SongInfo songInfo, int quantity) {
+      CartLineInfo line = this.findLineByCode(songInfo.getId());
 
       if (line == null) {
          line = new CartLineInfo();
          line.setQuantity(0);
-         line.setProductInfo(productInfo);
+         line.setSongInfo(songInfo);
          this.cartLines.add(line);
       }
       int newQuantity = line.getQuantity() + quantity;
@@ -60,13 +61,8 @@ public class CartInfo {
          line.setQuantity(newQuantity);
       }
    }
-
-   public void validate() {
-
-   }
-
-   public void updateProduct(String code, int quantity) {
-      CartLineInfo line = this.findLineByCode(code);
+   public void updateProduct(Long id, int quantity) {
+      CartLineInfo line = this.findLineByCode(id);
 
       if (line != null) {
          if (quantity <= 0) {
@@ -77,8 +73,8 @@ public class CartInfo {
       }
    }
 
-   public void removeProduct(ProductInfo productInfo) {
-      CartLineInfo line = this.findLineByCode(productInfo.getCode());
+   public void removeProduct(SongInfo songInfo) {
+      CartLineInfo line = this.findLineById(songInfo.getId());
       if (line != null) {
          this.cartLines.remove(line);
       }
@@ -89,7 +85,7 @@ public class CartInfo {
    }
 
    public boolean isValidCustomer() {
-      return this.UserBill != null && this.UserBill.isValid();
+      return this.userDetails != null && this.userDetails.isValid();
    }
 
    public int getQuantityTotal() {
@@ -112,10 +108,9 @@ public class CartInfo {
       if (cartForm != null) {
          List<CartLineInfo> lines = cartForm.getCartLines();
          for (CartLineInfo line : lines) {
-            this.updateProduct(line.getProductInfo().getCode(), line.getQuantity());
+            this.updateProduct(line.getSongInfo().getId(), line.getQuantity());
          }
       }
-
    }
 
 }

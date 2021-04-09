@@ -1,19 +1,20 @@
 package com.surpressmusic.store.model;
 
 public class CartLineInfo {
-   private ProductInfo productInfo;
+
+   private SongInfo songInfo;
    private int quantity;
 
    public CartLineInfo() {
       this.quantity = 0;
    }
 
-   public ProductInfo getProductInfo() {
-      return productInfo;
+   public SongInfo getSongInfo() {
+      return songInfo;
    }
 
-   public void setProductInfo(ProductInfo productInfo) {
-      this.productInfo = productInfo;
+   public void setSongInfo(SongInfo songInfo) {
+      this.songInfo = songInfo;
    }
 
    public int getQuantity() {
@@ -25,6 +26,6 @@ public class CartLineInfo {
    }
 
    public double getAmount() {
-      return this.productInfo.getPrice() * this.quantity;
+      return this.songInfo.getPrice() * this.quantity;
    }
 }
