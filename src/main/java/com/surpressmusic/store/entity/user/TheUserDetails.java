@@ -1,11 +1,37 @@
 package com.surpressmusic.store.entity.user;
 
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import com.surpressmusic.store.entity.user.User;
+@Entity
+@Table(name = "user_details")
+public class TheUserDetails implements UserDetails {
 
-public class TheUserDetails implements UserDetails{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_detail_id")
+	private int id;
+
+	@Column(name = "street_address", nullable = false)
+	private String streetAddress;
+
+	@Column(name = "city", nullable = false)
+	private String city;
+
+	@Column(name = "state", nullable = false)
+	private String state;
+
+	@Column(name = "zipcode", nullable = false)
+	private String zipcode;
+
+	@Column(name = "phone_number", nullable = false)
+	private String phoneNumber;
 
 	private String username;
 	private String password;
