@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/userdetailstyle.css">
+    <title>User Details</title>
+</head>
+<body>
+    
+    <header id="reg">
+        <c>
+    <form action="#">
+        <div class="container">
+        <div class="container" id="title">
+          <h1>Billing Details</h1>
+          <p>Please fill in this form to make payment.</p>
+          
+          </div>
+          <div class="container" id="forms">
+
+          <label for="streetaddress"><b>Street Address</b></label>
+          <input type="text" placeholder="Enter Street Address" id="streetadress" required>
+
+          <label for="city"><b>City</b></label>
+          <input type="text" placeholder="Enter City" id="city" required>
+          
+          <label for="state"><b>State</b></label>
+          <input type="text" placeholder="Enter State" id="state" required>
+          
+          <label for="zipcode"><b>Zipcode</b></label>
+          <input type="text" pattern="[0-9]{5}" placeholder="Enter 5 digit zipcode"  id="zipcode" required>
+      
+          <label for="phonenumber"><b>Phone Number</b></label>
+          <input type="text" id="phonenumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Format: 123-456-7890" required>
+
+          <label for="ccnumber"><b>Credit Card Number</b></label>
+          <input type="text" id="ccnumber" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" placeholder="Format: 0000-0000-0000" required>
+          <hr>
+      
+          <button type="submit" class="registerbtn">Continue to payment</button>
+            <hr>
+          <p>Want to shop some more? <a href="/browse">Browse</a>.</p>
+        </div>
+        </div>
+      </form>
+        </c>
+      </header>     
+</body>
+</html>
