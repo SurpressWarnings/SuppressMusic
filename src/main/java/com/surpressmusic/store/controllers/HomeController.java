@@ -28,6 +28,22 @@ public class HomeController {
 	   return "login";
    }
    
+   @PostMapping("/login")
+   public String processLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
+	
+		if(!userService.validateEmptyInput(username) || !userService.validateEmptyInput(password))
+		{
+			return "error";
+		}
+		
+		if(!userService.validateCredentials(username, password))
+		{
+			return "error";
+		}
+		
+		return "browse"; // Redirect to browse until shopping cart is implemented
+   }
+   
    @GetMapping("/register")
    public String register() {
 	   return "register";
@@ -36,14 +52,17 @@ public class HomeController {
    @PostMapping("/register")
    public String addUsers(ModelMap model, @RequestParam String firstname, @RequestParam String lastname, @RequestParam String username, 
    		@RequestParam String psw) {
-   	User u = new User();
-   	u.setFirstName(firstname);
-   	u.setLastName(lastname);
-   	u.setUsername(username);
-   	u.setPassword(psw);
-   	model.addAttribute("user", u);
-   	userService.saveUser(u);
-   	return "usersuccess";
+//   	User u = new User();
+//   	u.setFirstName(firstname);
+//   	u.setLastName(lastname);
+//   	u.setUsername(username);
+//   	u.setPassword(psw);
+	// Use User's constructor to create user
+	   
+	   	User u = new User(username, psw, firstname, lastname);
+	   	model.addAttribute("user", u);
+	   	userService.saveUser(u);
+	   	return "usersuccess";
    }  
    
 
