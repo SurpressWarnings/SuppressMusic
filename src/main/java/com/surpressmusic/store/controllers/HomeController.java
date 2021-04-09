@@ -29,8 +29,19 @@ public class HomeController {
    }
    
    @PostMapping("/login")
-   public String processLogin() {
-	   return "shoppingcart"; // Placeholder page name
+   public String processLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
+	
+		if(!userService.validateEmptyInput(username) || !userService.validateEmptyInput(password))
+		{
+			return "error";
+		}
+		
+		if(!userService.validateCredentials(username, password))
+		{
+			return "error";
+		}
+		
+		return "browse"; // Redirect to browse until shopping cart is implemented
    }
    
    @GetMapping("/register")

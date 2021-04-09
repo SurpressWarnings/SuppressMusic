@@ -11,36 +11,34 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Component;
 
-@Component
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	UserDetailsService userDetailsService;
-
+	
 	@Autowired
-	BCryptPasswordEncoder bCryptPasswordEncoder;
+	PasswordEncoder passwordEncoder;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// TODO Auto-generated method stub
 		auth.userDetailsService(userDetailsService)
-				.passwordEncoder(tempPasswordEncoder());
-				//.passwordEncoder(passwordEncoder());
+			.passwordEncoder(passwordEncoder);
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		http.authorizeRequests()
-				.antMatchers("/", "/register").anonymous()
+				.antMatchers("/", "/register").permitAll()
 				.antMatchers("/admin").hasRole("ADMIN")
+				.antMatchers("/shoppingcart").hasRole("USER")
 				.and()
 				   .formLogin()
 		            .loginPage("/login")
-		            .defaultSuccessUrl("/mainmenu")
+		            .defaultSuccessUrl("/browse")
 		            .failureUrl("/login?error=true")
 		            .permitAll()
 		        .and()
@@ -58,20 +56,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		web
 				.ignoring()
 				.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
-	}
-
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder()
-	{
-		return new BCryptPasswordEncoder();
-	}
-
-
-	// This is a work-around to store as passwords as plain text
-	// THIS SHOULD NOT MAKE IT TO PRODUCTION - DELETE BEFORE SUBMITTING
-	@Bean
-	public PasswordEncoder tempPasswordEncoder()
-	{
-		return NoOpPasswordEncoder.getInstance();
 	}
 }
