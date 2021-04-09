@@ -1,6 +1,12 @@
 package com.surpressmusic.store.repositories;
 
+import com.surpressmusic.store.entity.products.Song;
 import com.surpressmusic.store.entity.user.Order;
+import com.surpressmusic.store.entity.user.OrderDetail;
+import com.surpressmusic.store.entity.user.UserDetailsImpl;
+import com.surpressmusic.store.model.*;
+import com.surpressmusic.store.services.AlbumService;
+import com.surpressmusic.store.services.SongService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,6 +15,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Transactional
 @Repository
@@ -18,10 +26,10 @@ public class OrderRepository {
    private SessionFactory sessionFactory;
 
    @Autowired
-   private SongRepository songRepository;
+   private SongService songService;
 
    @Autowired
-   private AlbumRepository albumRepository;
+   private AlbumService albumService;
 
    private int getMaxOrderNum() {
       Session session = this.sessionFactory.getCurrentSession();
@@ -43,13 +51,10 @@ public class OrderRepository {
       order.setId(UUID.randomUUID().toString());
       order.setOrderNum(orderNum);
       order.setOrderDate(new Date());
-      order.setTotal(cartInfo.getTotal());
+      order.setTotal(cartInfo.getAmountTotal());
 
-      UserBill billingInfo = cartInfo.getCustomerInfo();
-      order.setCustomerName(customerInfo.getName());
-      order.setCustomerEmail(customerInfo.getEmail());
-      order.setCustomerPhone(customerInfo.getPhone());
-      order.setCustomerAddress(customerInfo.getAddress());
+      UserDetailsImpl userDetails = cartInfo.getUserDetails();
+      order.setUserDetails(userDetails);
 
       session.persist(order);
 
@@ -59,13 +64,13 @@ public class OrderRepository {
          OrderDetail detail = new OrderDetail();
          detail.setId(UUID.randomUUID().toString());
          detail.setOrder(order);
-         detail.setAmount(line.getAmount());
-         detail.setPrice(line.getProductInfo().getPrice());
-         detail.setQuanity(line.getQuantity());
+         detail.setQuantity(line.getQuantity());
+         detail.setPrice(line.getSongInfo().getPrice());
+         detail.setQuantityTotal(line.getQuantity());
 
-         String code = line.getProductInfo().getCode();
-         Product product = this.productDAO.findProduct(code);
-         detail.setProduct(product);
+         Long id = line.getSongInfo().getId();
+         Song song = songService.getSongById(id);
+         detail.setSong(song);
 
          session.persist(detail);
       }
@@ -76,18 +81,19 @@ public class OrderRepository {
       session.flush();
    }
 
+   // to be implemented in future
    // @page = 1, 2, ...
-   public PaginationResult<OrderInfo> listOrderInfo(int page, int maxResult, int maxNavigationPage) {
-      String sql = "Select new " + OrderInfo.class.getName()//
-            + "(ord.id, ord.orderDate, ord.orderNum, ord.amount, "
-            + " ord.customerName, ord.customerAddress, ord.customerEmail, ord.customerPhone) " + " from "
-            + Order.class.getName() + " ord "//
-            + " order by ord.orderNum desc";
-
-      Session session = this.sessionFactory.getCurrentSession();
-      Query<OrderInfo> query = session.createQuery(sql, OrderInfo.class);
-      return new PaginationResult<OrderInfo>(query, page, maxResult, maxNavigationPage);
-   }
+//   public PaginationResult<OrderInfo> listOrderInfo(int page, int maxResult, int maxNavigationPage) {
+//      String sql = "Select new " + OrderInfo.class.getName()//
+//            + "(ord.id, ord.orderDate, ord.orderNum, ord.amount, "
+//            + " ord.customerName, ord.customerAddress, ord.customerEmail, ord.customerPhone) " + " from "
+//            + Order.class.getName() + " ord "//
+//            + " order by ord.orderNum desc";
+//
+//      Session session = this.sessionFactory.getCurrentSession();
+//      Query<OrderInfo> query = session.createQuery(sql, OrderInfo.class);
+//      return new PaginationResult<OrderInfo>(query, page, maxResult, maxNavigationPage);
+//   }
 
    public Order findOrder(String orderId) {
       Session session = this.sessionFactory.getCurrentSession();
@@ -96,9 +102,11 @@ public class OrderRepository {
 
    public OrderInfo getOrderInfo(String orderId) {
       Order order = this.findOrder(orderId);
+
       if (order == null) {
          return null;
       }
+
       return new OrderInfo(order.getId(), order.getOrderDate(), //
             order.getOrderNum(), order.getAmount(), order.getCustomerName(), //
             order.getCustomerAddress(), order.getCustomerEmail(), order.getCustomerPhone());
@@ -117,34 +125,33 @@ public class OrderRepository {
       return query.getResultList();
    }
 
-}
    public void setOrderNum(int orderNum) {
       this.orderNum = orderNum;
    }
 
-   public CustomerInfo getCustomerInfo() {
-      return customerInfo;
+   public UserInfo getCustomerInfo() {
+      return userInfo;
    }
 
-   public void setCustomerInfo(CustomerInfo customerInfo) {
-      this.customerInfo = customerInfo;
+   public void setCustomerInfo(UserInfo customerInfo) {
+      this.userInfo = customerInfo;
    }
 
    public List<CartLineInfo> getCartLines() {
       return this.cartLines;
    }
 
-   private CartLineInfo findLineByCode(String code) {
+   private CartLineInfo findLineByCode(String id) {
       for (CartLineInfo line : this.cartLines) {
-         if (line.getProductInfo().getCode().equals(code)) {
+         if (line.getSongInfo().getId().equals(id)) {
             return line;
          }
       }
       return null;
    }
 
-   public void addProduct(ProductInfo productInfo, int quantity) {
-      CartLineInfo line = this.findLineByCode(productInfo.getCode());
+   public void addProduct(SongInfo songInfo, int quantity) {
+      CartLineInfo line = this.findLineByCode(songInfo.getId());
 
       if (line == null) {
          line = new CartLineInfo();
@@ -160,9 +167,7 @@ public class OrderRepository {
       }
    }
 
-   public void validate() {
-
-   }
+   public void validate() {}
 
    public void updateProduct(String code, int quantity) {
       CartLineInfo line = this.findLineByCode(code);

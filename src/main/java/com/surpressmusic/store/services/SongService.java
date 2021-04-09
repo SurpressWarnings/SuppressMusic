@@ -19,6 +19,8 @@ public class SongService {
       return songRepo.findAll();
    }
 
+   public Song getSongById(Long id) { return songRepo.findById(id); }
+
    public List<Song> getAllSortedSongs() { return songRepo.findAll(Sort.by(Sort.Direction.ASC, "songTitle")); }
 
    public Song getSongByTitle(String title) {
