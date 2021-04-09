@@ -1,6 +1,5 @@
 package com.surpressmusic.store.entity.user;
 
-import com.surpressmusic.store.entity.products.Album;
 import com.surpressmusic.store.entity.products.Song;
 
 import javax.persistence.*;
@@ -22,9 +21,10 @@ public class OrderDetail {
    @JoinColumn(name = "song_id")
    private Song song;
 
-   @ManyToOne
-   @JoinColumn(name = "album_id")
-   private Album album;
+   // To be implemented in the future
+//   @ManyToOne
+//   @JoinColumn(name = "album_id")
+//   private Album album;
 
    @Column(name = "quantity")
    private int quantity;
@@ -32,10 +32,12 @@ public class OrderDetail {
    @Column(name = "price")
    private double price;
 
-   @Column(name = "amount")
-   private double amount;
+   @Column(name = "quantity_total")
+   private double quantityTotal;
 
-   public OrderDetail() {}
+   public OrderDetail() {
+      // empty constructor
+   }
 
    public Integer getId() {
       return id;
@@ -57,14 +59,6 @@ public class OrderDetail {
       this.song = song;
    }
 
-   public Album getAlbum() {
-      return album;
-   }
-
-   public void setAlbum(Album album) {
-      this.album = album;
-   }
-
    public int getQuantity() {
       return quantity;
    }
@@ -81,11 +75,11 @@ public class OrderDetail {
       this.price = price;
    }
 
-   public double getAmount() {
-      return amount;
+   public double getQuantityTotal() {
+      return quantityTotal;
    }
 
-   public void setAmount(double amount) {
-      this.amount = amount;
+   public void setQuantityTotal(double quantityTotal) {
+      this.quantityTotal = quantityTotal;
    }
 }
