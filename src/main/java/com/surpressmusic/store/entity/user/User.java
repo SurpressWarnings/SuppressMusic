@@ -17,14 +17,9 @@ public class User {
 	@Column(name="password", nullable = false)
 	private String password;
 
-	@Column(name="first_name", nullable = false)
-	private String firstName;
-
-	@Column(name="last_name", nullable = false)
-	private String lastName;
-
-	@Column(name="cc_number")
-	private String ccNumber;
+	@OneToOne
+	@JoinColumn(name = "user_details_id")
+	private UserDetailsImpl userDetails;
 
    @OneToOne
 	@JoinColumn(name="role_id")
@@ -62,35 +57,19 @@ public class User {
 		this.password = password;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getCcNumber() {
-		return ccNumber;
-	}
-
-	public void setCcNumber(String ccNumber) {
-		this.ccNumber = ccNumber;
-	}
-
 	public Role getRole() {
 		return role;
 	}
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public UserDetailsImpl getUserDetails() {
+		return userDetails;
+	}
+
+	public void setUserDetails(UserDetailsImpl userDetails) {
+		this.userDetails = userDetails;
 	}
 }
