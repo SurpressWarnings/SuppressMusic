@@ -1,9 +1,9 @@
 package com.surpressmusic.store.controllers;
 
-import com.surpressmusic.store.model.Album;
-import com.surpressmusic.store.model.Artist;
-import com.surpressmusic.store.model.Genre;
-import com.surpressmusic.store.model.Song;
+import com.surpressmusic.store.entity.products.Album;
+import com.surpressmusic.store.entity.products.Artist;
+import com.surpressmusic.store.entity.products.Genre;
+import com.surpressmusic.store.entity.products.Song;
 import com.surpressmusic.store.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.entity.user;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
 package com.surpressmusic.store.repositories;
 
-import com.surpressmusic.store.model.Format;
+import com.surpressmusic.store.entity.products.Format;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

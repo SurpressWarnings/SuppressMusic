@@ -1,11 +1,11 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.entity.products;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "albums")
-public class Album {
+public class Album implements Product {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +19,8 @@ public class Album {
    @JoinColumn(name="artist_id", nullable = false)
    private Artist artist;
 
-   @Column(name="price")
-   private float price;
+   @Column(name="price", nullable = true)
+   private double price;
 
    @OneToOne
    @JoinColumn(name="genre_id", nullable=false)
@@ -66,5 +66,14 @@ public class Album {
 
    public void setSongs(List<Song> songs) {
       this.songs = songs;
+   }
+
+   private void setPrice() {
+      double songPrice = this.getSongs().get(0).getPrice();
+      this.price = (songPrice * this.getSongs().size()) - (2 * songPrice);
+   }
+
+   public double getPrice() {
+      return price;
    }
 }

@@ -1,9 +1,8 @@
 package com.surpressmusic.store.services;
 
-import com.surpressmusic.store.model.Artist;
+import com.surpressmusic.store.entity.products.Artist;
 import com.surpressmusic.store.repositories.ArtistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

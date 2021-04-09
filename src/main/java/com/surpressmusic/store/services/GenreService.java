@@ -1,6 +1,6 @@
 package com.surpressmusic.store.services;
 
-import com.surpressmusic.store.model.Genre;
+import com.surpressmusic.store.entity.products.Genre;
 import com.surpressmusic.store.repositories.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

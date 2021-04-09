@@ -1,7 +1,7 @@
 package com.surpressmusic.store.services;
 
 import com.surpressmusic.store.exceptions.UserNotFoundException;
-import com.surpressmusic.store.model.User;
+import com.surpressmusic.store.entity.user.User;
 import com.surpressmusic.store.repositories.RoleRepository;
 import com.surpressmusic.store.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

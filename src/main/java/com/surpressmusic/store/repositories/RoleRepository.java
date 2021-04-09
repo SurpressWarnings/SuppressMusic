@@ -1,6 +1,6 @@
 package com.surpressmusic.store.repositories;
 
-import com.surpressmusic.store.model.Role;
+import com.surpressmusic.store.entity.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

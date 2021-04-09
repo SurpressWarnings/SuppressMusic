@@ -1,7 +1,6 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.entity.user;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -30,18 +29,14 @@ public class User {
    @OneToOne
 	@JoinColumn(name="role_id")
 	private Role role;
-   
+
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 	
 	// Empty Constructor
-	public User()
-	{
-		
-	}
-
+	public User() {}
 	
 	public Integer getId() {
 		return id;

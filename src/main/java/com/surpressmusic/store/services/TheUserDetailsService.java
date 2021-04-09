@@ -8,8 +8,8 @@
 //
 //import java.util.Optional;
 //
-//import com.surpressmusic.store.model.TheUserDetails;
-//import com.surpressmusic.store.model.User;
+//import com.surpressmusic.store.entity.user.TheUserDetails;
+//import com.surpressmusic.store.entity.user.User;
 //import com.surpressmusic.store.repositories.UserRepository;
 //
 //@Service
