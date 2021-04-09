@@ -1,7 +1,5 @@
 package com.surpressmusic.store.entity.user;
 
-import com.surpressmusic.store.model.UserBill;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,15 +8,17 @@ import java.util.Date;
 public class Order {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "order_id")
-   private Integer id;
+   @Column(name = "order_id", length = 50)
+   private String id;
+
+   @Column(name = "order_num")
+   private int num;
 
    @Column(name = "status")
    private String status;
 
    @Column(name = "order_num")
-   private Long orderNum;
+   private int orderNum;
 
    @Column(name = "order_date")
    private Date orderDate;
@@ -32,15 +32,15 @@ public class Order {
 
    @OneToOne
    @JoinColumn(name = "bill_id")
-   private UserBill userBill;
+   private UserDetailsImpl userDetails;
 
    public Order() {}
 
-   public void setId(Integer id) {
+   public void setId(String id) {
       this.id = id;
    }
 
-   public Integer getId() {
+   public String getId() {
       return id;
    }
 
@@ -52,11 +52,11 @@ public class Order {
       this.status = status;
    }
 
-   public Long getOrderNum() {
+   public int getOrderNum() {
       return orderNum;
    }
 
-   public void setOrderNum(Long orderNum) {
+   public void setOrderNum(int orderNum) {
       this.orderNum = orderNum;
    }
 
@@ -84,11 +84,11 @@ public class Order {
       this.user = user;
    }
 
-   public UserBill getUserBill() {
-      return userBill;
+   public UserDetailsImpl getUserDetails() {
+      return userDetails;
    }
 
-   public void setUserBill(UserBill userBill) {
-      this.userBill = userBill;
+   public void setUserDetails(UserDetailsImpl userDetails) {
+      this.userDetails = userDetails;
    }
 }
