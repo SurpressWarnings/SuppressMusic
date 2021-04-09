@@ -27,9 +27,9 @@ public class SearchController {
    @Autowired
    private AlbumService albumService;
 
-   @GetMapping("/admin")
-   public String getAdmin() {
-      return "admin";
+   @GetMapping("/search")
+   public String getSearch() {
+      return "search";
    }
 
    @PostMapping("/searchSong")
