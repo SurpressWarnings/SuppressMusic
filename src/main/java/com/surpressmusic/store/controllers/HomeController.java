@@ -65,5 +65,10 @@ public class HomeController {
 	   	return "usersuccess";
    }  
    
+   
+   @GetMapping("/userdetails")
+   public String userdetails() {
+	   return "userdetails";
+   }
 
 }
