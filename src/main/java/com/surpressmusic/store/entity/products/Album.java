@@ -68,12 +68,13 @@ public class Album implements Product {
       this.songs = songs;
    }
 
-   private void setPrice() {
-      double songPrice = this.getSongs().get(0).getPrice();
-      this.price = (songPrice * this.getSongs().size()) - (2 * songPrice);
-   }
-
-   public double getPrice() {
-      return price;
-   }
+   // To be implemented in the future
+//   private void setPrice() {
+//      double songPrice = this.getSongs().get(0).getPrice();
+//      this.price = (songPrice * this.getSongs().size()) - (2 * songPrice);
+//   }
+//
+//   public double getPrice() {
+//      return price;
+//   }
 }
