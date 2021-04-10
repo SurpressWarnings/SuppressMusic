@@ -1,6 +1,5 @@
 package com.surpressmusic.store.entity.user;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,17 +31,22 @@ public class UserDetailsImpl implements UserDetails {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@Transient
 	private List<GrantedAuthority> authorities;
-
-	public UserDetailsImpl(User user, List<GrantedAuthority> auths) {
-		this.user = user;
-		this.authorities = auths;
-	}
 
 	// Empty Constructor
 	public UserDetailsImpl()
 	{
 
+	}
+
+	public UserDetailsImpl(User user, List<GrantedAuthority> auths) {
+		this.user = user;
+		this.authorities = auths;
+		this.isAccountNonExpired = true;
+		this.isAccountNonLocked = true;
+		this.isCredentialsNonExpired = true;
+		this.isEnabled = true;
 	}
 
 	@Override
@@ -102,8 +106,4 @@ public class UserDetailsImpl implements UserDetails {
 		this.authorities = authorities;
 	}
 
-	public List<String> getAllUserInfoFields() {
-		return Arrays.asList(firstName, lastName, streetAddress,
-				city, state, zipcode, email, phoneNumber);
-	}
 }

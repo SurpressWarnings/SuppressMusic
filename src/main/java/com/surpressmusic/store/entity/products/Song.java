@@ -9,7 +9,7 @@ public class Song {
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="song_id")
-   private Long id;
+   private Integer id;
 
    @Column(nullable = false)
    private String artist;
@@ -31,7 +31,7 @@ public class Song {
    @JoinColumn(name="album_id")
    private Album album;
 
-   public Long getId() {
+   public Integer getId() {
       return id;
    }
 

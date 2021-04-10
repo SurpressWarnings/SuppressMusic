@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class BrowseController {
@@ -47,27 +46,21 @@ public class BrowseController {
    public String browseGenres(@RequestParam String strId, Model model) {
 
       Integer id = Integer.parseInt(strId);
-      Genre genre = new Genre();
-
-      if (genreService.getById(id).isPresent()) {
-         genre = genreService.getById(id).get();
-      } else {
-         throw new MusicNotFoundException("Genre not found");
-      }
+      Genre genre = genreService.getById(id);
 
       List<Song> songs = songService.getSortedSongsByGenre(genre);
       model.addAttribute("songs", songs);
       return "by_genre";
    }
 
-//   @PostMapping("/browseByArtist")
-//   public String browseArtists(@RequestParam String id, Model model) {
-//
-//      Artist artist = artistService.getArtistById(Integer.parseInt(id)).get();
-//      List<Song> songs = songService.getSortedSongsByArtist((artist.getName()));
-//      model.addAttribute("songs", songs);
-//      return "by_artist";
-//   }
+   @PostMapping("/browseByArtist")
+   public String browseArtists(@RequestParam String id, Model model) {
+
+      Artist artist = artistService.getArtistById(Integer.parseInt(id)).get();
+      List<Song> songs = songService.getSortedSongsByArtist((artist.getName()));
+      model.addAttribute("songs", songs);
+      return "by_artist";
+   }
 
    @PostMapping("/browseByAlbum")
    public String browseAlbums(Model model) {

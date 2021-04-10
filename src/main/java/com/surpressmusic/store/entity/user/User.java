@@ -69,6 +69,14 @@ public class User {
 		this.role = role;
 	}
 
+	public UserBilling getUserBilling() {
+		return userBilling;
+	}
+
+	public void setUserBilling(UserBilling userBilling) {
+		this.userBilling = userBilling;
+	}
+
 	public UserDetailsImpl getUserDetails() {
 		return userDetails;
 	}

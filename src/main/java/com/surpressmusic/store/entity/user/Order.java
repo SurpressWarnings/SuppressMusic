@@ -14,13 +14,10 @@ public class Order {
    private String id;
 
    @Column(name = "order_num")
-   private int num;
+   private int orderNum;
 
    @Column(name = "status")
    private String status;
-
-   @Column(name = "order_num")
-   private int orderNum;
 
    @Column(name = "order_date")
    private Date orderDate;
@@ -42,20 +39,20 @@ public class Order {
       return id;
    }
 
+   public int getOrderNum() {
+      return orderNum;
+   }
+
+   public void setOrderNum(int num) {
+      this.orderNum = num;
+   }
+
    public String getStatus() {
       return status;
    }
 
    public void setStatus(String status) {
       this.status = status;
-   }
-
-   public int getOrderNum() {
-      return orderNum;
-   }
-
-   public void setOrderNum(int orderNum) {
-      this.orderNum = orderNum;
    }
 
    public Date getOrderDate() {

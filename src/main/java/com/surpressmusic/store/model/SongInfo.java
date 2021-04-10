@@ -4,7 +4,7 @@ import com.surpressmusic.store.entity.products.Song;
 
 public class SongInfo {
 
-   private Long id;
+   private Integer id;
    private String title;
    private double price;
 
@@ -17,17 +17,17 @@ public class SongInfo {
    }
 
    // Using in JPA/Hibernate query
-   public SongInfo(Long songId, String title, double price) {
+   public SongInfo(Integer songId, String title, double price) {
       this.id = songId;
       this.title = title;
       this.price = price;
    }
 
-   public Long getId() {
+   public Integer getId() {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(Integer id) {
       this.id = id;
    }
 

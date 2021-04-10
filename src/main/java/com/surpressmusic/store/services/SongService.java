@@ -8,7 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class SongService {
@@ -20,7 +20,7 @@ public class SongService {
       return songRepo.findAll();
    }
 
-   public Song getSongById(Long id) { return songRepo.findById(id); }
+   public Song getSongById(Integer id) { return songRepo.findSongById(id); }
 
    public List<Song> getAllSortedSongs() { return songRepo.findAll(Sort.by(Sort.Direction.ASC, "songTitle")); }
 

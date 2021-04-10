@@ -1,16 +1,15 @@
 package com.surpressmusic.store.entity.user;
 
-import org.hibernate.annotations.Table;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table(name = "user_billing_info")
 public class UserBilling {
 
    @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name = "user_billing_id")
    private Long id;
 
@@ -42,6 +41,10 @@ public class UserBilling {
    private String ccNumber;
 
    public UserBilling(){}
+
+   public Long getId() {
+      return id;
+   }
 
    public String getFirstName() {
       return firstName;
@@ -115,4 +118,8 @@ public class UserBilling {
       this.ccNumber = ccNumber;
    }
 
+   public List<String> getAllFields() {
+      return Arrays.asList(firstName, lastName, email, streetAddress, city, state,
+            zipcode, phoneNumber, ccNumber);
+   }
 }

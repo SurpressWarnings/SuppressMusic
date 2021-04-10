@@ -3,7 +3,7 @@ package com.surpressmusic.store.repositories;
 import com.surpressmusic.store.entity.products.Song;
 import com.surpressmusic.store.entity.user.Order;
 import com.surpressmusic.store.entity.user.OrderDetail;
-import com.surpressmusic.store.entity.user.UserDetailsImpl;
+import com.surpressmusic.store.entity.user.UserBilling;
 import com.surpressmusic.store.model.*;
 import com.surpressmusic.store.services.SongService;
 import org.hibernate.Session;
@@ -52,15 +52,15 @@ public class OrderRepository {
       order.setTotal(cartInfo.getAmountTotal());
 
       UserInfo userInfo = cartInfo.getUserInfo();
-      UserDetailsImpl userDetails = new UserDetailsImpl();
-      userDetails.setFirstName(userInfo.getFirstName());
-      userDetails.setLastName(userInfo.getLastName());
-      userDetails.setStreetAddress(userInfo.getStreetAddress());
-      userDetails.setCity(userInfo.getCity());
-      userDetails.setState(userInfo.getState());
-      userDetails.setZipcode(userInfo.getZipcode());
-      userDetails.setEmail(userInfo.getEmail());
-      userDetails.setPhoneNumber(userInfo.getPhone());
+      UserBilling userBilling = new UserBilling();
+      userBilling.setFirstName(userInfo.getFirstName());
+      userBilling.setLastName(userInfo.getLastName());
+      userBilling.setStreetAddress(userInfo.getStreetAddress());
+      userBilling.setCity(userInfo.getCity());
+      userBilling.setState(userInfo.getState());
+      userBilling.setZipcode(userInfo.getZipcode());
+      userBilling.setEmail(userInfo.getEmail());
+      userBilling.setPhoneNumber(userInfo.getPhone());
 
       session.persist(order);
 
@@ -73,7 +73,7 @@ public class OrderRepository {
          detail.setPrice(line.getSongInfo().getPrice());
          detail.setQuantityTotal(line.getQuantity());
 
-         Long id = line.getSongInfo().getId();
+         Integer id = line.getSongInfo().getId();
          Song song = songService.getSongById(id);
          detail.setSong(song);
 
@@ -98,9 +98,9 @@ public class OrderRepository {
          return null;
       }
 
-      List<String> userInfoFields = order.getUserDetails().getAllUserInfoFields();
+      UserBilling userBilling = order.getUserDetails().getUser().getUserBilling();
       UserInfo userInfo = new UserInfo();
-      userInfo.setUserInfoFields(userInfoFields);
+      userInfo.setAllFields(userBilling.getAllFields());
 
       OrderInfo orderInfo = new OrderInfo(order.getId(), order.getOrderDate(),
             order.getOrderNum(), order.getTotal());

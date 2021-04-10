@@ -1,6 +1,5 @@
 package com.surpressmusic.store.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -100,11 +99,11 @@ public class UserInfo {
       this.phone = phone;
    }
 
-   public void setUserInfoFields(List<String> userInfoFields) {
+   public void setAllFields(List<String> userInfoFields) {
       this.userInfoFields = userInfoFields;
    }
 
-   public List<String> getAllUserInfoFields() {
+   public List<String> getAllFields() {
       return userInfoFields;
    }
 

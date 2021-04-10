@@ -18,7 +18,7 @@ public class GenreService {
       return genreRepo.findAll();
    }
 
-   public Optional<Genre> getById(Integer id) {
-      return genreRepo.findById(id);
+   public Genre getById(Integer id) {
+      return genreRepo.findGenreById(id);
    }
 }

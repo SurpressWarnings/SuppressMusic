@@ -31,9 +31,9 @@ public class CartInfo {
       return this.cartLines;
    }
 
-   private CartLineInfo findLineById(Long id) {
+   private CartLineInfo findLineById(Integer id) {
       for (CartLineInfo line : this.cartLines) {
-         if (line.getSongInfo().getId().equals(id)) {
+         if (line.getSongInfo().getId() == id) {
             return line;
          }
       }
@@ -56,7 +56,7 @@ public class CartInfo {
          line.setQuantity(newQuantity);
       }
    }
-   public void updateProduct(Long id, int quantity) {
+   public void updateProduct(Integer id, int quantity) {
       CartLineInfo line = this.findLineById(id);
 
       if (line != null) {

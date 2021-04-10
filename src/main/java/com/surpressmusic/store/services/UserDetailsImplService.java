@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UserDetailsImplService implements UserDetailsService{
 
 	@Autowired
 	private UserRepository userRepo;
@@ -37,13 +37,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		GrantedAuthority authority = new SimpleGrantedAuthority(role);
 		authList.add(authority);
 
-		boolean enabled = user.getUserDetails().isEnabled();
-		boolean accountNonExpired = true;
-		boolean credentialsNonExpired = true;
-		boolean accountNonLocked = true;
-
-		UserDetailsImpl userDetails = new UserDetailsImpl(User user, authList);
-
-		return userDetails;
+		return new UserDetailsImpl(user, authList);
 	}
 }
