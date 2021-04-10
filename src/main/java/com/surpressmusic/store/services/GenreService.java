@@ -19,5 +19,6 @@ public class GenreService {
    }
 
    public Optional<Genre> getById(Integer id) {
-      return genreRepo.findById(id); }
+      return genreRepo.findById(id);
+   }
 }

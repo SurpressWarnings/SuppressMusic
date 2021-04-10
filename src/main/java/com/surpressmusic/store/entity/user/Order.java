@@ -1,5 +1,7 @@
 package com.surpressmusic.store.entity.user;
 
+import com.surpressmusic.store.model.UserInfo;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -27,11 +29,7 @@ public class Order {
    private double total;
 
    @OneToOne
-   @JoinColumn(name = "user_id")
-   private User user;
-
-   @OneToOne
-   @JoinColumn(name = "bill_id")
+   @JoinColumn(name = "user_detail_id")
    private UserDetailsImpl userDetails;
 
    public Order() {}
@@ -74,14 +72,6 @@ public class Order {
 
    public void setTotal(double total) {
       this.total = total;
-   }
-
-   public User getUser() {
-      return user;
-   }
-
-   public void setUser(User user) {
-      this.user = user;
    }
 
    public UserDetailsImpl getUserDetails() {

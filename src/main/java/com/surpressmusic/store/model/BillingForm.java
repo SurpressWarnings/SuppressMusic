@@ -13,8 +13,6 @@ public class BillingForm {
    private String email;
    private String phone;
 
-   private Address address;
-
    private Boolean isValid;
 
    public BillingForm() {}
@@ -29,8 +27,6 @@ public class BillingForm {
       this.zipcode = zipcode;
       this.email = email;
       this.phone = phone;
-
-      this.address = new Address(streetAddress, city, state, zipcode);
    }
 
    public String getFirstName() {
@@ -95,14 +91,6 @@ public class BillingForm {
 
    public void setPhone(String phone) {
       this.phone = phone;
-   }
-
-   public Address getAddress() {
-      return address;
-   }
-
-   public void setAddress(Address address) {
-      this.address = address;
    }
 
    public Boolean isValid() {

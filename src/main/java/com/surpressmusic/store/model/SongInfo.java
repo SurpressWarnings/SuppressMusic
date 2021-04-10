@@ -4,30 +4,30 @@ import com.surpressmusic.store.entity.products.Song;
 
 public class SongInfo {
 
-   private String id;
+   private Long id;
    private String title;
    private double price;
 
    public SongInfo() {}
 
    public SongInfo(Song song) {
-      this.id = song.getId().toString();
+      this.id = song.getId();
       this.title = song.getSongTitle();
       this.price = song.getPrice();
    }
 
    // Using in JPA/Hibernate query
    public SongInfo(Long songId, String title, double price) {
-      this.id = songId.toString();
+      this.id = songId;
       this.title = title;
       this.price = price;
    }
 
-   public String getId() {
+   public Long getId() {
       return id;
    }
 
-   public void setId(String id) {
+   public void setId(Long id) {
       this.id = id;
    }
 

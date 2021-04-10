@@ -18,6 +18,10 @@ public class User {
 	private String password;
 
 	@OneToOne
+	@JoinColumn(name = "user_billing_id")
+	private UserBilling userBilling;
+
+	@OneToOne
 	@JoinColumn(name = "user_details_id")
 	private UserDetailsImpl userDetails;
 

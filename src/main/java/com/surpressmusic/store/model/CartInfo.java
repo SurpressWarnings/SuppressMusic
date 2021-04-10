@@ -1,22 +1,16 @@
 package com.surpressmusic.store.model;
 
-import com.surpressmusic.store.entity.user.User;
-import com.surpressmusic.store.entity.user.UserDetailsImpl;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartInfo {
 
    private int orderNum;
-   private User user;
-   private UserDetailsImpl userDetails;
+   private UserInfo userInfo;
 
    private final List<CartLineInfo> cartLines = new ArrayList<>();
 
    public CartInfo() {}
-
-   public void validate() {}
 
    public int getOrderNum() {
       return orderNum;
@@ -25,18 +19,19 @@ public class CartInfo {
       this.orderNum = orderNum;
    }
 
-   public User getUser() {
-      return user;
+   public UserInfo getUserInfo() {
+      return userInfo;
    }
-   public UserDetailsImpl getUserDetails() {
-      return userDetails;
+
+   public void setUserInfo(UserInfo userInfo) {
+      this.userInfo = userInfo;
    }
 
    public List<CartLineInfo> getCartLines() {
       return this.cartLines;
    }
 
-   private CartLineInfo findLineByCode(Long id) {
+   private CartLineInfo findLineById(Long id) {
       for (CartLineInfo line : this.cartLines) {
          if (line.getSongInfo().getId().equals(id)) {
             return line;
@@ -46,7 +41,7 @@ public class CartInfo {
    }
 
    public void addProduct(SongInfo songInfo, int quantity) {
-      CartLineInfo line = this.findLineByCode(songInfo.getId());
+      CartLineInfo line = this.findLineById(songInfo.getId());
 
       if (line == null) {
          line = new CartLineInfo();
@@ -62,7 +57,7 @@ public class CartInfo {
       }
    }
    public void updateProduct(Long id, int quantity) {
-      CartLineInfo line = this.findLineByCode(id);
+      CartLineInfo line = this.findLineById(id);
 
       if (line != null) {
          if (quantity <= 0) {
@@ -85,7 +80,7 @@ public class CartInfo {
    }
 
    public boolean isValidCustomer() {
-      return this.userDetails != null && this.userDetails.isValid();
+      return this.userInfo != null && this.userInfo.isValid();
    }
 
    public int getQuantityTotal() {

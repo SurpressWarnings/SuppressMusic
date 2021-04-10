@@ -10,11 +10,7 @@ public class OrderInfo {
    private int orderNum;
    private double amount;
 
-   private String customerFirstName;
-   private String customerLastName;
-   private Address customerAddress;
-   private String customerEmail;
-   private String customerPhone;
+   private UserInfo userInfo;
 
    private List<OrderDetailInfo> details;
 
@@ -23,20 +19,12 @@ public class OrderInfo {
    }
 
    // Using for Hibernate Query.
-   public OrderInfo(String id, Date orderDate, int orderNum, double amount,
-                    String customerFirstName, String customerLastName,
-                    Address customerAddress, String customerEmail,
-                    String customerPhone) {
+   public OrderInfo(String id, Date orderDate, int orderNum,
+                     double amount) {
       this.id = id;
       this.orderDate = orderDate;
       this.orderNum = orderNum;
       this.amount = amount;
-
-      this.customerFirstName = customerFirstName;
-      this.customerLastName = customerLastName;
-      this.customerAddress = customerAddress;
-      this.customerEmail = customerEmail;
-      this.customerPhone = customerPhone;
    }
 
    public String getId() {
@@ -71,44 +59,12 @@ public class OrderInfo {
       this.amount = amount;
    }
 
-   public String getCustomerFirstName() {
-      return customerFirstName;
+   public UserInfo getUserInfo() {
+      return userInfo;
    }
 
-   public void setCustomerFirstName(String customerFirstName) {
-      this.customerFirstName = customerFirstName;
-   }
-
-   public String getCustomerLastName() {
-      return customerLastName;
-   }
-
-   public void setCustomerLastName(String customerLastName) {
-      this.customerLastName = customerLastName;
-   }
-
-   public Address getCustomerAddress() {
-      return customerAddress;
-   }
-
-   public void setCustomerAddress(Address customerAddress) {
-      this.customerAddress = customerAddress;
-   }
-
-   public String getCustomerEmail() {
-      return customerEmail;
-   }
-
-   public void setCustomerEmail(String customerEmail) {
-      this.customerEmail = customerEmail;
-   }
-
-   public String getCustomerPhone() {
-      return customerPhone;
-   }
-
-   public void setCustomerPhone(String customerPhone) {
-      this.customerPhone = customerPhone;
+   public void setUserInfo(UserInfo userInfo) {
+      this.userInfo = userInfo;
    }
 
    public List<OrderDetailInfo> getDetails() {

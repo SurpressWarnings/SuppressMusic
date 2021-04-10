@@ -14,6 +14,8 @@ public class Genre {
    @Column(name="genre_type")
    private String genreType;
 
+   public Genre() {}
+
    public Integer getId() {
       return id;
    }

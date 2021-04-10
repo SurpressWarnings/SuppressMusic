@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "albums")
-public class Album implements Product {
+public class Album {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)

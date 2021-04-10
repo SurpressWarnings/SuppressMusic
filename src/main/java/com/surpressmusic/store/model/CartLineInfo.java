@@ -3,6 +3,7 @@ package com.surpressmusic.store.model;
 public class CartLineInfo {
 
    private SongInfo songInfo;
+
    private int quantity;
 
    public CartLineInfo() {

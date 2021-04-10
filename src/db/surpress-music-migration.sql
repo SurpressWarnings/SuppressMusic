@@ -15,11 +15,19 @@ insert into artists (name) values
     ("Linkin Park");
 
 insert into albums (title, artist_id, genre_id) values
+<<<<<<< Updated upstream
 ("Revenge of the Dreamers III", 1, 5),
 ("Under Pressure", 2, 5),
 ("Worlds", 3, 6),
 ("Graduation", 4, 5),
 ("Brave New World", 5, 2),
+=======
+("Revenge of the Dreamers III", 1),
+("Under Pressure", 2, ),
+("Worlds", 3, ),
+("Graduation", 4),
+("Brave New World", 5),
+>>>>>>> Stashed changes
 ("Reanimation", 6, 2);
 
 insert into genres (genre_type) values
