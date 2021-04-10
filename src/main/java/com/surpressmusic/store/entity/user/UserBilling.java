@@ -40,6 +40,10 @@ public class UserBilling {
    @Column(name = "cc_number")
    private String ccNumber;
 
+   @OneToOne
+   @JoinColumn(name = "user_id")
+   private User user;
+
    public UserBilling(){}
 
    public Long getId() {
@@ -116,6 +120,14 @@ public class UserBilling {
 
    public void setCcNumber(String ccNumber) {
       this.ccNumber = ccNumber;
+   }
+
+   public User getUser() {
+      return user;
+   }
+
+   public void setUser(User user) {
+      this.user = user;
    }
 
    public List<String> getAllFields() {

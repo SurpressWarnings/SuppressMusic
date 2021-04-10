@@ -1,5 +1,7 @@
 package com.surpressmusic.store.entity.user;
 
+import com.surpressmusic.store.repositories.UserDetailsImplRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,18 +19,21 @@ public class UserDetailsImpl implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_detail_id")
-	private int id;
+	private Integer id;
 
+	@Column(name = "isAccountNonExpired")
 	private Boolean isAccountNonExpired;
 
+	@Column(name = "isAccountNonLocked")
 	private Boolean isAccountNonLocked;
 
+	@Column(name = "isCredentialsNonExpired")
 	private Boolean isCredentialsNonExpired;
 
+	@Column(name = "isEnabled")
 	private Boolean isEnabled;
 
-	@OneToOne
-	@JoinColumn(name = "user_id")
+	@OneToOne(cascade = {CascadeType.ALL})
 	private User user;
 
 	@Transient
@@ -40,6 +45,14 @@ public class UserDetailsImpl implements UserDetails {
 
 	}
 
+	public UserDetailsImpl(User user) {
+		this.user = user;
+		this.isAccountNonExpired = true;
+		this.isAccountNonLocked = true;
+		this.isCredentialsNonExpired = true;
+		this.isEnabled = true;
+	}
+
 	public UserDetailsImpl(User user, List<GrantedAuthority> auths) {
 		this.user = user;
 		this.authorities = auths;
@@ -47,6 +60,10 @@ public class UserDetailsImpl implements UserDetails {
 		this.isAccountNonLocked = true;
 		this.isCredentialsNonExpired = true;
 		this.isEnabled = true;
+	}
+
+	public void setAuthorities(List<GrantedAuthority> authorities) {
+		this.authorities = authorities;
 	}
 
 	@Override
@@ -66,31 +83,28 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
+		return isAccountNonExpired;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
+		return isAccountNonLocked;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
+		return isCredentialsNonExpired;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+		return isEnabled;
 	}
 
 	private void setId(Integer id) { this.id = id; }
 
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
 
@@ -101,9 +115,4 @@ public class UserDetailsImpl implements UserDetails {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-	public void setAuthorities(List<GrantedAuthority> authorities) {
-		this.authorities = authorities;
-	}
-
 }

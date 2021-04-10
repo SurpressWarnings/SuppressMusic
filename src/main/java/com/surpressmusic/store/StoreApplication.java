@@ -7,9 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -18,11 +17,14 @@ import java.util.Properties;
 @EnableJpaRepositories
 public class StoreApplication {
 
-   @Autowired
-   private Environment env;
-
    public static void main(String[] args) {
       SpringApplication.run(StoreApplication.class, args);
+   }
+
+   @Bean
+   public BCryptPasswordEncoder encoder()
+   {
+      return new BCryptPasswordEncoder();
    }
 
 //   @Bean(name = "dataSource")
@@ -39,7 +41,7 @@ public class StoreApplication {
 //
 //      return dataSource;
 //   }
-//
+
 //   @Autowired
 //   @Bean(name = "sessionFactory")
 //   public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {
@@ -63,7 +65,7 @@ public class StoreApplication {
 //      System.out.println("## getSessionFactory: " + sf);
 //      return sf;
 //   }
-//
+
 //   @Autowired
 //   @Bean(name = "transactionManager")
 //   public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {

@@ -1,5 +1,7 @@
 package com.surpressmusic.store.controllers;
 
+import com.surpressmusic.store.entity.user.UserDetailsImpl;
+import com.surpressmusic.store.services.UserDetailsImplService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +19,9 @@ public class HomeController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+   private UserDetailsImplService detailsService;
+
    @GetMapping({"/", "index"})
    public String home() {
       return "index";
@@ -33,13 +38,15 @@ public class HomeController {
    }
    
    @PostMapping("/register")
-   public String addUsers(ModelMap model, @RequestParam String firstname, @RequestParam String lastname, @RequestParam String username, 
+   public String addUsers(ModelMap model, @RequestParam String username,
    		@RequestParam String psw) {
    	User u = new User();
    	u.setUsername(username);
    	u.setPassword(psw);
    	model.addAttribute("user", u);
    	userService.saveUser(u);
-   	return "usersuccess";
+
+   	model.addAttribute("registerSuccess", true);
+   	return "login";
    }
 }

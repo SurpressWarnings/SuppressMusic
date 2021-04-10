@@ -1,10 +1,9 @@
 package com.surpressmusic.store.services;
 
 import com.surpressmusic.store.entity.user.UserDetailsImpl;
+import com.surpressmusic.store.repositories.UserDetailsImplRepository;
 import com.surpressmusic.store.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,11 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.surpressmusic.store.entity.user.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class UserDetailsImplService implements UserDetailsService{
+
+	@Autowired
+	private UserDetailsImplRepository detailsRepo;
 
 	@Autowired
 	private UserRepository userRepo;
@@ -31,12 +30,15 @@ public class UserDetailsImplService implements UserDetailsService{
 					+ username + " was not found in the database");
 		}
 
-		String role = user.getRole().getRoleType();
+		return user.getUserDetails();
+	}
 
-		List<GrantedAuthority> authList = new ArrayList<>();
-		GrantedAuthority authority = new SimpleGrantedAuthority(role);
-		authList.add(authority);
+	public void saveDetails(UserDetailsImpl details) {
+		detailsRepo.save(details);
+	}
 
-		return new UserDetailsImpl(user, authList);
+	public void saveDetails(User user) {
+		UserDetailsImpl userDetails = new UserDetailsImpl(user);
+		detailsRepo.save(userDetails);
 	}
 }

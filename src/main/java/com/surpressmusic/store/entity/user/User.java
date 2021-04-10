@@ -25,7 +25,7 @@ public class User {
 	@JoinColumn(name = "user_details_id")
 	private UserDetailsImpl userDetails;
 
-   @OneToOne
+   @OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="role_id")
 	private Role role;
 
