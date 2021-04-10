@@ -15,11 +15,11 @@ insert into artists (name) values
     ("Linkin Park");
 
 insert into albums (title, artist_id, genre_id) values
-("Revenge of the Dreamers III", 1),
-("Under Pressure"),
-("Worlds", 3),
-("Graduation", 4),
-("Brave New World", 5),
+("Revenge of the Dreamers III", 1, 5),
+("Under Pressure", 2, 5),
+("Worlds", 3, 6),
+("Graduation", 4, 5),
+("Brave New World", 5, 2),
 ("Reanimation", 6, 2);
 
 insert into genres (genre_type) values
@@ -37,7 +37,11 @@ insert into genres (genre_type) values
    ("International"),
    ("World");
 
-insert into albums ()
+insert into formats (format_type) values
+    ("Digital"),
+    ("CD"),
+    ("Cassette"),
+    ("Vinyl");
 
 insert into songs (artist, format, genre_id, price, song, album_id) values
     ("Dreamville", "DIGITAL", 5, 0.99, "Under the Sun", 1),
@@ -132,9 +136,3 @@ insert into songs (artist, format, genre_id, price, song, album_id) values
     ("Linkin Park", "DIGITAL", 2, 0.99, "Cure for the Itch", 6),
     ("Linkin Park", "DIGITAL", 2, 0.99, "One Step Closer", 6),
     ("Linkin Park", "DIGITAL", 2, 0.99, "Crawling", 6);
-
-insert into formats (format_type) values
-    ("Digital"),
-    ("CD"),
-    ("Cassette"),
-    ("Vinyl");
