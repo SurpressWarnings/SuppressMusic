@@ -5,6 +5,7 @@ import com.surpressmusic.store.model.User;
 import com.surpressmusic.store.repositories.RoleRepository;
 import com.surpressmusic.store.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,13 +19,16 @@ public class UserService {
 
    @Autowired
    private RoleRepository roleRepo;
+   
+   @Autowired
+   PasswordEncoder crypt;
 
    public List<User> getAllUsers() {
       return userRepo.findAll();
    }
 
    public User getUserByUsername(String username) throws UserNotFoundException {
-      Optional<User> foundUser = Optional.ofNullable(userRepo.findByUsername(username));
+      Optional<User> foundUser = userRepo.findByUsername(username);
 
       return foundUser.orElseGet(User::new);
    }
@@ -34,6 +38,33 @@ public class UserService {
 //      Set<Role> roles = new HashSet<>();
 //      roles.add(roleRepo.findByRole("USER"));
 //      user.setRoles(roles);
+	  user.setPassword(crypt.encode(user.getPassword()));
       userRepo.save(user);
    }
+   
+   public boolean existsByUserName(String username)
+   {
+	   if(userRepo.findByUsername(username).isPresent())
+		   return true;
+	   return false;
+   }
+   
+   public boolean validateCredentials(String username, String password)
+   {
+	   Optional<User> user = userRepo.findByUsername(username);
+   	
+	   if(user.get() != null && user.get().getPassword().equals(password))
+		   return true;
+	   return false;
+   }
+   
+   public boolean validateEmptyInput(String input)
+	{
+		if(input.isEmpty() || input.trim().isEmpty())
+		{
+			return false;
+		}
+		return true;
+	}
+   
 }
