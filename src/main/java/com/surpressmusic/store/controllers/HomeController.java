@@ -1,13 +1,18 @@
 package com.surpressmusic.store.controllers;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.surpressmusic.store.model.User;
+import com.surpressmusic.store.model.TheUserDetails;
 import com.surpressmusic.store.services.UserService;
 
 
@@ -41,6 +46,18 @@ public class HomeController {
 		}
 		
 		return "browse"; // Redirect to browse until shopping cart is implemented
+   }
+   
+   @GetMapping("/default")
+   public String defaultAfterLogin()
+   {
+	   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	   
+	   if(auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")))
+	   {
+		   return "redirect:/admin/";
+	   }
+	   return "redirect:/browse/";
    }
    
    @GetMapping("/register")
