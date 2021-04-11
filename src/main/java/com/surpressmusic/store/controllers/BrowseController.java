@@ -1,5 +1,6 @@
 package com.surpressmusic.store.controllers;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.surpressmusic.store.entity.products.Album;
 import com.surpressmusic.store.entity.products.Artist;
 import com.surpressmusic.store.entity.products.Genre;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -32,32 +34,33 @@ public class BrowseController {
    private FormatService formatService;
 
    @GetMapping("/browse")
-   public String showGenres(Model model) {
+   public ModelAndView browser(Model model) {
       List<Genre> genres = genreService.getAll();
       List<Artist> artists = artistService.getAllArtists();
       List<Song> songs = songService.getAllSortedSongs();
-      model.addAttribute("genres", genres);
-      model.addAttribute("artists", artists);
-      model.addAttribute("songs", songs);
-      return "browse";
+
+      ModelAndView mav = new ModelAndView("browse");
+
+      mav.addObject("genres", genres);
+      mav.addObject("artists", artists);
+      mav.addObject("songs", songs);
+      return mav;
    }
 
-   @PostMapping("/browseByGenre")
-   public String browseGenres(@RequestParam String strId, Model model) {
-
-      Integer id = Integer.parseInt(strId);
+   @GetMapping("/browse/genre")
+   public ModelAndView browseGenres(@RequestParam Integer id,
+                              Model model) {
       Genre genre = genreService.getById(id);
-
       List<Song> songs = songService.getSortedSongsByGenre(genre);
-      model.addAttribute("songs", songs);
-      return "by_genre";
+      ModelAndView mav = new ModelAndView("by_genre");
+      mav.addObject("songs", songs);
+      return mav;
    }
 
    @PostMapping("/browseByArtist")
-   public String browseArtists(@RequestParam String id, Model model) {
-
-      Artist artist = artistService.getArtistById(Integer.parseInt(id)).get();
-      List<Song> songs = songService.getSortedSongsByArtist((artist.getName()));
+   public String browseArtists(@RequestParam String name, Model model) {
+      Artist artist = artistService.getArtistByName(name);
+      List<Song> songs = songService.getSortedSongsByArtist(artist.getName());
       model.addAttribute("songs", songs);
       return "by_artist";
    }

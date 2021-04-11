@@ -31,6 +31,8 @@ public class Song {
    @JoinColumn(name="album_id")
    private Album album;
 
+   public Song() {}
+
    public Integer getId() {
       return id;
    }

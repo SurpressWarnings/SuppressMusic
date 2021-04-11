@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class GenreService {
@@ -16,6 +15,10 @@ public class GenreService {
 
    public List<Genre> getAll() {
       return genreRepo.findAll();
+   }
+
+   public Genre getByType(String type) {
+      return genreRepo.findGenreByGenreType(type);
    }
 
    public Genre getById(Integer id) {

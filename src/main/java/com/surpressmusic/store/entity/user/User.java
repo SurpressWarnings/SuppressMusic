@@ -21,9 +21,9 @@ public class User {
 	@JoinColumn(name = "user_billing_id")
 	private UserBilling userBilling;
 
-	@OneToOne
-	@JoinColumn(name = "user_details_id")
-	private UserDetailsImpl userDetails;
+//userBilling	@OneToOne
+//	@JoinColumn(name = "user_details_id")
+//	private UserDetailsImpl userDetails;
 
    @OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="role_id")
@@ -33,10 +33,10 @@ public class User {
 		this.username = username;
 		this.password = password;
 	}
-	
+
 	// Empty Constructor
 	public User() {}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -77,11 +77,11 @@ public class User {
 		this.userBilling = userBilling;
 	}
 
-	public UserDetailsImpl getUserDetails() {
-		return userDetails;
-	}
-
-	public void setUserDetails(UserDetailsImpl userDetails) {
-		this.userDetails = userDetails;
-	}
+//	public UserDetailsImpl getUserDetails() {
+//		return userDetails;
+//	}
+//
+//	public void setUserDetails(UserDetailsImpl userDetails) {
+//		this.userDetails = userDetails;
+//	}
 }

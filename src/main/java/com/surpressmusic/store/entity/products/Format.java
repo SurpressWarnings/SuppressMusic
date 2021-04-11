@@ -14,6 +14,8 @@ public class Format {
    @Column(name="format_type")
    private String formatType;
 
+   public Format(){}
+
    public Integer getId() {
       return id;
    }

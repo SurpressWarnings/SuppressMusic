@@ -7,7 +7,7 @@ import com.surpressmusic.store.entity.user.User;
 import com.surpressmusic.store.repositories.RoleRepository;
 import com.surpressmusic.store.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -24,8 +24,8 @@ public class UserService {
    @Autowired
    private UserDetailsImplService detailsService;
 
-   @Autowired
-   private BCryptPasswordEncoder encoder;
+//   @Autowired
+//   private BCryptPasswordEncoder encoder;
 
    public List<User> getAllUsers() {
       return userRepo.findAll();
@@ -38,7 +38,10 @@ public class UserService {
    }
 
    public void registerUser(User user) {
-      user.setPassword(encoder.encode(user.getPassword()));
+
+//      user.setPassword(encoder.encode(user.getPassword()));
+      user.setPassword(user.getPassword());
+
       Role role = roleRepo.findByRoleType("USER");
       user.setRole(role);
 
