@@ -2,13 +2,19 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+         <link rel="stylesheet" href="/css/genrestyle.css">
+
+      
 <head>
    <meta charset="UTF-8">
    <title>Surpress Music - Browse By Genre</title>
-
 </head>
 <nav th:insert="fragments.html :: navigation"></nav>
 <body>
+
+   		<h1>Genres</h1>
+    <p>Select a genre</p>
+
 
    <ul th:each="genre: ${genres}">
       <li>

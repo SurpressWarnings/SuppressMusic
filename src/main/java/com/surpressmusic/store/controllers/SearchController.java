@@ -71,4 +71,5 @@ public class SearchController {
 
       return "search_results";
    }
+   
 }
