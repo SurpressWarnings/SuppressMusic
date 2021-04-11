@@ -61,7 +61,7 @@ public class HomeController {
 	   	User u = new User(username, psw);
 	   	model.addAttribute("user", u);
 	   	userService.registerUser(u);
-	   	return "usersuccess";
+	   	return "login";
    }  
    
    
