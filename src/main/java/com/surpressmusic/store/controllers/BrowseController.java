@@ -1,5 +1,7 @@
 package com.surpressmusic.store.controllers;
 
+import com.surpressmusic.store.model.Album;
+import com.surpressmusic.store.model.Artist;
 import com.surpressmusic.store.model.Genre;
 import com.surpressmusic.store.model.Song;
 import com.surpressmusic.store.services.*;
@@ -11,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class MusicController {
+public class BrowseController {
 
    @Autowired
    private GenreService genreService;
@@ -28,20 +30,43 @@ public class MusicController {
    @Autowired
    private FormatService formatService;
 
-   private
    @GetMapping("/browse")
    public String showGenres(Model model) {
       List<Genre> genres = genreService.getAll();
+      List<Artist> artists = artistService.getAllArtists();
+      List<Song> songs = songService.getAllSortedSongs();
       model.addAttribute("genres", genres);
-
+      model.addAttribute("artists", artists);
+      model.addAttribute("songs", songs);
       return "browse";
    }
 
    @PostMapping("/browseByGenre")
    public String browseGenres(@RequestParam String id, Model model) {
       Genre genre = genreService.getById(Integer.parseInt(id)).get();
-      List<Song> songs = songService.getSongsByGenre(genre);
+      List<Song> songs = songService.getSortedSongsByGenre(genre);
       model.addAttribute("songs", songs);
       return "by_genre";
    }
+
+//   @PostMapping("/browseByArtist")
+//   public String browseArtists(@RequestParam String id, Model model) {
+//
+//      Artist artist = artistService.getArtistById(Integer.parseInt(id)).get();
+//      List<Song> songs = songService.getSortedSongsByArtist((artist.getName()));
+//      model.addAttribute("songs", songs);
+//      return "by_artist";
+//   }
+
+   @PostMapping("/browseByAlbum")
+   public String browseAlbums(Model model) {
+      List<Album> albums = albumService.getAll();
+      model.addAttribute("albums", albums);
+      return "by_artist";
+   }
+
+//   @PostMapping("/browseByFormat")
+//   public String browseByFormat() {
+//
+//   }
 }
