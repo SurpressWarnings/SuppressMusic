@@ -1,7 +1,7 @@
 package com.surpressmusic.store.services;
 
-import com.surpressmusic.store.model.Genre;
-import com.surpressmusic.store.model.Song;
+import com.surpressmusic.store.model.product.Genre;
+import com.surpressmusic.store.model.product.Song;
 import com.surpressmusic.store.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

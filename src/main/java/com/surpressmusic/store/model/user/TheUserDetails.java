@@ -1,16 +1,13 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.model.user;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.surpressmusic.store.model.User;
 
 public class TheUserDetails implements UserDetails{
 
