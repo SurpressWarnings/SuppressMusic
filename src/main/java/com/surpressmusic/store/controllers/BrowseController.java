@@ -74,7 +74,7 @@ public class BrowseController {
       return "browse_results";
    }
 
-   @GetMapping("/brows/format")
+   @GetMapping("/browse/format")
    public String browseByFormat(@RequestParam String id, Model model) {
       List<Song> songs = songService.getSongsByFormat(Integer.parseInt(id));
       model.addAttribute("songs", songs);
