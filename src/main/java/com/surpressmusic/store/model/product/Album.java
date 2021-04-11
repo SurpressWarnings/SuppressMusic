@@ -19,9 +19,6 @@ public class Album {
    @JoinColumn(name="artist_id", nullable = false)
    private Artist artist;
 
-   @Column(name="price")
-   private float price;
-
    @OneToOne
    @JoinColumn(name="genre_id", nullable=false)
    private Genre genre;
