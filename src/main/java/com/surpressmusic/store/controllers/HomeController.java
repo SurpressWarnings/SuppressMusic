@@ -17,7 +17,6 @@ public class HomeController {
 	@Autowired
 	private UserService userService;
 
-
    @GetMapping({"/", "index"})
    public String home() {
       return "index";
@@ -50,7 +49,7 @@ public class HomeController {
    }
    
    @PostMapping("/register")
-   public String addUsers(ModelMap model, @RequestParam String firstname, @RequestParam String lastname, @RequestParam String username, 
+   public String addUsers(ModelMap model, @RequestParam String username,
    		@RequestParam String psw) {
 //   	User u = new User();
 //   	u.setFirstName(firstname);
@@ -59,9 +58,9 @@ public class HomeController {
 //   	u.setPassword(psw);
 	// Use User's constructor to create user
 	   
-	   	User u = new User(username, psw, firstname, lastname);
+	   	User u = new User(username, psw);
 	   	model.addAttribute("user", u);
-	   	userService.saveUser(u);
+	   	userService.registerUser(u);
 	   	return "usersuccess";
    }  
    

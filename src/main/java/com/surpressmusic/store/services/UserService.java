@@ -16,9 +16,6 @@ public class UserService {
 
    @Autowired
    private UserRepository userRepo;
-
-   @Autowired
-   private RoleRepository roleRepo;
    
    @Autowired
    PasswordEncoder crypt;
@@ -33,12 +30,13 @@ public class UserService {
       return foundUser.orElseGet(User::new);
    }
 
-   public void saveUser(User user) {
+   public void registerUser(User user) {
 //      user.setPassword(encoder.encode(user.getPassword()));
 //      Set<Role> roles = new HashSet<>();
 //      roles.add(roleRepo.findByRole("USER"));
 //      user.setRoles(roles);
-	  user.setPassword(crypt.encode(user.getPassword()));
+	   user.setPassword(crypt.encode(user.getPassword()));
+	   user.setRoles("USER");
       userRepo.save(user);
    }
    
