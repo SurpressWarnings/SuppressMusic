@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import com.surpressmusic.store.model.TheUserDetails;
-import com.surpressmusic.store.model.User;
+import com.surpressmusic.store.model.user.TheUserDetails;
+import com.surpressmusic.store.model.user.User;
 import com.surpressmusic.store.repositories.UserRepository;
 
 @Service

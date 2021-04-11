@@ -1,8 +1,7 @@
 package com.surpressmusic.store.services;
 
 import com.surpressmusic.store.exceptions.UserNotFoundException;
-import com.surpressmusic.store.model.User;
-import com.surpressmusic.store.repositories.RoleRepository;
+import com.surpressmusic.store.model.user.User;
 import com.surpressmusic.store.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,9 +15,6 @@ public class UserService {
 
    @Autowired
    private UserRepository userRepo;
-
-   @Autowired
-   private RoleRepository roleRepo;
    
    @Autowired
    PasswordEncoder crypt;
@@ -33,12 +29,13 @@ public class UserService {
       return foundUser.orElseGet(User::new);
    }
 
-   public void saveUser(User user) {
+   public void registerUser(User user) {
 //      user.setPassword(encoder.encode(user.getPassword()));
 //      Set<Role> roles = new HashSet<>();
 //      roles.add(roleRepo.findByRole("USER"));
 //      user.setRoles(roles);
-	  user.setPassword(crypt.encode(user.getPassword()));
+	   user.setPassword(crypt.encode(user.getPassword()));
+	   user.setRoles("USER");
       userRepo.save(user);
    }
    

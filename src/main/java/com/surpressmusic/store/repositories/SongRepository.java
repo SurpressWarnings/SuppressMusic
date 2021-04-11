@@ -1,11 +1,10 @@
 package com.surpressmusic.store.repositories;
 
-import com.surpressmusic.store.model.Album;
-import com.surpressmusic.store.model.Genre;
-import com.surpressmusic.store.model.Song;
+import com.surpressmusic.store.model.product.Album;
+import com.surpressmusic.store.model.product.Genre;
+import com.surpressmusic.store.model.product.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

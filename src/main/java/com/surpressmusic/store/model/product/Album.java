@@ -1,4 +1,4 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.model.product;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,9 +18,6 @@ public class Album {
    @OneToOne
    @JoinColumn(name="artist_id", nullable = false)
    private Artist artist;
-
-   @Column(name="price")
-   private float price;
 
    @OneToOne
    @JoinColumn(name="genre_id", nullable=false)

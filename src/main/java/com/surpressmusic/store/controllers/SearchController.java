@@ -1,8 +1,8 @@
 package com.surpressmusic.store.controllers;
 
-import com.surpressmusic.store.model.Album;
-import com.surpressmusic.store.model.Artist;
-import com.surpressmusic.store.model.Song;
+import com.surpressmusic.store.model.product.Album;
+import com.surpressmusic.store.model.product.Artist;
+import com.surpressmusic.store.model.product.Song;
 import com.surpressmusic.store.services.AlbumService;
 import com.surpressmusic.store.services.ArtistService;
 import com.surpressmusic.store.services.SongService;
