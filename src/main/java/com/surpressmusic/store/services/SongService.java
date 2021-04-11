@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service
@@ -25,16 +26,20 @@ public class SongService {
       return songRepo.findBySongTitle(title);
    }
 
-   public List<Song> getSortedSongsByArtist(String artist) {
-      return songRepo.findByArtistOrderBySongTitle(artist);
+   public List<Song> getSongsByAlbum(Integer id) {
+      return songRepo.findAllByAlbum(id);
    }
 
-   public List<Song> getSortedSongsByGenre(Genre genre) {
-      return songRepo.findByGenreOrderBySongTitle(genre);
+   public List<Song> getSongsByArtist(Integer id) {
+      return songRepo.findAllByArtist(id);
    }
 
-   public List<Song> getSortedSongsByFormat(String format) {
-      return songRepo.findByFormatOrderBySongTitle(format);
+   public List<Song> getSongsByGenre(Integer id) {
+      return songRepo.findAllByGenre(id);
+   }
+
+   public List<Song> getSongsByFormat(Integer id) {
+      return songRepo.findAllByFormat(id);
    }
 
    public List<Song> getSongsByPriceRange(String min, String max) throws NumberFormatException {
