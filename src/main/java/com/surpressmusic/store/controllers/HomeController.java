@@ -1,6 +1,5 @@
 package com.surpressmusic.store.controllers;
 
-import com.surpressmusic.store.entity.user.UserDetailsImpl;
 import com.surpressmusic.store.services.UserDetailsImplService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.surpressmusic.store.entity.user.User;
 import com.surpressmusic.store.services.UserService;
-
 
 @Controller
 public class HomeController {
@@ -44,7 +42,7 @@ public class HomeController {
    	u.setUsername(username);
    	u.setPassword(psw);
    	model.addAttribute("user", u);
-   	userService.saveUser(u);
+   	userService.registerUser(u);
 
    	model.addAttribute("registerSuccess", true);
    	return "login";

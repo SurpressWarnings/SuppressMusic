@@ -17,6 +17,9 @@ import java.util.Properties;
 @EnableJpaRepositories
 public class StoreApplication {
 
+//   @Autowired
+//   Environment env;
+
    public static void main(String[] args) {
       SpringApplication.run(StoreApplication.class, args);
    }

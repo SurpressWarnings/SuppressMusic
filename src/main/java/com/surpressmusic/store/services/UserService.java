@@ -1,6 +1,7 @@
 package com.surpressmusic.store.services;
 
 import com.surpressmusic.store.entity.user.Role;
+import com.surpressmusic.store.entity.user.UserDetailsImpl;
 import com.surpressmusic.store.exceptions.UserNotFoundException;
 import com.surpressmusic.store.entity.user.User;
 import com.surpressmusic.store.repositories.RoleRepository;
@@ -36,12 +37,24 @@ public class UserService {
       return foundUser.orElseGet(User::new);
    }
 
-   public void saveUser(User user) {
+   public void registerUser(User user) {
       user.setPassword(encoder.encode(user.getPassword()));
       Role role = roleRepo.findByRoleType("USER");
       user.setRole(role);
+
       userRepo.save(user);
 
-      detailsService.saveDetails(user);
+      updateUserDetails(user.getUsername());
+   }
+
+   public User updateUser(User user) {
+      return userRepo.save(user);
+   }
+
+   public void updateUserDetails(String username) {
+      User user = userRepo.findByUsername(username);
+
+      UserDetailsImpl userDetails = new UserDetailsImpl(user);
+      detailsService.updateDetails(userDetails);
    }
 }

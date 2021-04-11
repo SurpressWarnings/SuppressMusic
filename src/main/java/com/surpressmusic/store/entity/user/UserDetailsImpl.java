@@ -33,7 +33,7 @@ public class UserDetailsImpl implements UserDetails {
 	@Column(name = "isEnabled")
 	private Boolean isEnabled;
 
-	@OneToOne(cascade = {CascadeType.ALL})
+	@OneToOne
 	private User user;
 
 	@Transient
