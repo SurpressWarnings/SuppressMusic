@@ -13,6 +13,6 @@ public interface GenreRepository extends JpaRepository<Genre, Integer> {
    List<Genre> findAll();
    Optional<Genre> findById(Integer id);
 
-   @Query(value = "SELECT g from Genre g WHERE g.genreType LIKE %:search ORDER BY g.genreType")
+   @Query(value = "SELECT g from Genre g WHERE g.genreType LIKE %:search% ORDER BY g.genreType")
    List<Genre> findAllByGenreTypeLike(String search);
 }

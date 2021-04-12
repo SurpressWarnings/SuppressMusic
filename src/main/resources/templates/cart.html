@@ -24,13 +24,13 @@
       </tr>
       <tr th:each="item: ${session.cart}">
          <td>
-            <strong><span th:text="${item.song.songTitle}"></span></strong>
+            <strong><span th:text="${item.title}"></span></strong>
          </td>
          <td>
-            <span th:text="${item.song.artist}"></span>
+            <span th:text="${item.artist}"></span>
          </td>
          <td>
-            <span th:text="${item.song.format.formatType}"></span>
+            <span th:text="${item.format}"></span>
          </td>
          <td>
             <span th:text="${item.price}"></span>
@@ -42,11 +42,9 @@
             <span th:text="${item.subTotalPrice}"></span>
          </td>
          <td>
-            <form th:href="@{/cart/remove}" method="POST" th:id="${song.id}">
-               <input type="hidden" th:value="${song.id}">
-               <button class="btn-sm"
-                       th:onclick="document.getElementById(${song.id}).submit()">
-                  Remove</button>
+            <form th:href="@{/cart/remove}" method="POST">
+               <input type="hidden" th:value="${item.id}">
+               <button type="submit" class="btn-sm">Remove</button>
             </form>
          </td>
       </tr>

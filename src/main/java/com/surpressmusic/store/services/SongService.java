@@ -1,13 +1,11 @@
 package com.surpressmusic.store.services;
 
-import com.surpressmusic.store.model.product.Genre;
 import com.surpressmusic.store.model.product.Song;
 import com.surpressmusic.store.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Service
@@ -21,6 +19,8 @@ public class SongService {
    }
 
    public List<Song> getAllSortedSongs() { return songRepo.findAll(Sort.by(Sort.Direction.ASC, "songTitle")); }
+
+   public Song getSongById(Integer id) { return songRepo.findSongById(id); }
 
    public Song getSongByTitle(String title) {
       return songRepo.findBySongTitle(title);

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.surpressmusic.store.model.user.User;
 import com.surpressmusic.store.services.UserService;
 
-
 @Controller
 public class HomeController {
 	
@@ -63,11 +62,9 @@ public class HomeController {
 	   	userService.registerUser(u);
 	   	return "usersuccess";
    }  
-   
-   
+
    @GetMapping("/userdetails")
    public String userdetails() {
 	   return "userdetails";
    }
-
 }

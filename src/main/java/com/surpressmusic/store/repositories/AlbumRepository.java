@@ -14,7 +14,7 @@ public interface AlbumRepository extends JpaRepository<Album, Integer> {
 
    Album findByTitle(String title);
 
-   @Query(value = "SELECT a from Album a WHERE a.title LIKE %:search ORDER BY a.title")
+   @Query(value = "SELECT a from Album a WHERE a.title LIKE %:search% ORDER BY a.title")
    List<Album> findAllByTitleLike(String search);
 
    List<Album> findByGenre(String genre);
