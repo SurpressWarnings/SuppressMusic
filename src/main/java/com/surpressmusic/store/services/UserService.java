@@ -35,7 +35,7 @@ public class UserService {
 //      roles.add(roleRepo.findByRole("USER"));
 //      user.setRoles(roles);
 	   user.setPassword(crypt.encode(user.getPassword()));
-	   user.setRoles("USER");
+	   user.setRoles("ROLE_USER");
       userRepo.save(user);
    }
    

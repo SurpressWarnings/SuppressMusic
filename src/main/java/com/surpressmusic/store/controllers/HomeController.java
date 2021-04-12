@@ -60,6 +60,7 @@ public class HomeController {
 	   {
 		   return "redirect:/admin/";
 	   }
+
 	   return "redirect:/browse/";
    }
    
