@@ -67,14 +67,6 @@ public class Song {
       this.genre = genre;
    }
 
-   public float getPrice() {
-      return price;
-   }
-
-   public void setPrice(float price) {
-      this.price = price;
-   }
-
    public Album getAlbum() {
       return album;
    }

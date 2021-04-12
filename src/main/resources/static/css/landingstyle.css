@@ -9,13 +9,13 @@
 
     color:#fbc225;
     line-height:1.6;
+   	background-image:url('../images/capstonepicmaybe.png');
+        background-size:cover;
+        background-position:center;
     
   }
   
   #showcase{
-    background-image:url('../images/capstonepicmaybe.png');
-    background-size:cover;
-    background-position:center;
     height:100vh;
     display:flex;
     flex-direction:column;
@@ -26,13 +26,16 @@
   }
   
   #showcase h1{
-    font-size:40px;
-    /* line-height:1.2; */
+    font-size:55px;
     background-color: rgba(68, 68, 68, 0.2);
   }
   
   #showcase p{
-    font-size:20px;
+    font-size:35px;
+    font-family:'Snell Roundhand',cursive ;
+    
+    font-style: italic;
+
     background-color: rgba(68, 68, 68, 0.2);
   }
   
@@ -51,3 +54,60 @@
     background:rgb(75, 168, 255);
 
   }
+  
+  * {box-sizing: border-box;}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.topnav .search-container {
+  float: right;
+}
+
+.topnav input[type=text] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+}
+
+.btn {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  background: rgb(2, 100, 124);
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  color:#fbc225;
+}
+
+.btn:hover {
+  background: #fbc225;
+}
+
+
+  

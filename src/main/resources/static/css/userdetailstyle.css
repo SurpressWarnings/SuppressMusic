@@ -1,11 +1,16 @@
 * {box-sizing: border-box}
 
 body{
-	margin:0;
+    margin: 0;
+}
+
+c{
+  margin: 20px;
 }
 
  #reg{
-    background-image:url('../images/capstonepicmaybe.png');
+     margin: auto;
+   	background-image:url('../images/capstonepicmaybe.png');
     background-size:cover;
     background-position:center;
     height:100vh;
@@ -14,12 +19,12 @@ body{
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:0 20px;
+
   }
 
   .container{
        border: 1px solid #fbc225;
-       width:650px
+       width: 650px;
   }
 
 
@@ -75,6 +80,7 @@ hr {
   text-align: center;
 }
 h1{
+
     text-align: center;
     font-size: 22px;
     color: #fbc225;
