@@ -1,4 +1,6 @@
-package com.surpressmusic.store.model.user;
+package com.surpressmusic.store.model.shopping;
+
+import com.surpressmusic.store.model.product.Song;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +17,9 @@ public class Order {
    @Column(name = "status")
    private String status;
 
+   @OneToMany
+   @JoinColumn(name = "song_id")
+   private List<Song> cartSongs;
 
 
 }

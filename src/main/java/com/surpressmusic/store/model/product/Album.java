@@ -9,22 +9,22 @@ public class Album {
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name="album_id", nullable = false)
+   @Column(name="album_id")
    private Integer id;
 
-   @Column(name="title", nullable = false)
+   @Column(name="title")
    private String title;
 
    @OneToOne
-   @JoinColumn(name="artist_id", nullable = false)
+   @JoinColumn(name="artist_id")
    private Artist artist;
 
    @OneToOne
-   @JoinColumn(name="genre_id", nullable=false)
+   @JoinColumn(name="genre_id")
    private Genre genre;
 
    @OneToMany
-   @JoinColumn(name="song_id", nullable = true)
+   @JoinColumn(name="song_id")
    private List<Song> songs;
 
    public Album() {}
