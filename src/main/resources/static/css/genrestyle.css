@@ -11,10 +11,10 @@ body{
     padding:0 20px;
   }
 
-  h1{
+ /* h1{
     margin: 0;
     padding: 0 0 20px;
-    /* text-align: center; */
+    /* text-align: center; 
     font-size: 22px;
     color: #fbc225;
     background-color: rgba(68, 68, 68, 0.2);
@@ -54,4 +54,4 @@ ul li::before {
   display: inline-block; 
   width: 1em; 
   margin-left: -1em; 
-}
+}*/
