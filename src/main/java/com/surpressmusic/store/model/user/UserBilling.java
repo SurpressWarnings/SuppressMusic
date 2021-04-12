@@ -1,52 +1,23 @@
 package com.surpressmusic.store.model.user;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-@Entity
-@Table(name = "user_billing_info")
 public class UserBilling {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name = "user_billing_id")
-   private Integer id;
-
-   @Column(name = "first_name", nullable = false)
    private String firstName;
-
-   @Column(name = "last_name", nullable = false)
    private String lastName;
-
-   @Column(name = "email")
    private String email;
-
-   @Column(name = "street_address", nullable = false)
    private String streetAddress;
-
-   @Column(name = "city", nullable = false)
    private String city;
-
-   @Column(name = "state", nullable = false)
    private String state;
-
-   @Column(name = "zipcode", nullable = false)
    private String zipcode;
-
-   @Column(name = "phone_number", nullable = false)
    private String phoneNumber;
-
-   @Column(name = "cc_number")
    private String ccNumber;
 
    public UserBilling() {
-   }
-
-   public void setId(Integer id) {
-      this.id = id;
-   }
-
-   public Integer getId() {
-      return id;
    }
 
    public String getFirstName() {
@@ -119,5 +90,12 @@ public class UserBilling {
 
    public void setCcNumber(String ccNumber) {
       this.ccNumber = ccNumber;
+   }
+
+   public List<String> toList() {
+      return new ArrayList<>(Arrays.asList(
+         this.firstName, this.lastName, this.email, this.streetAddress,
+         this.city, this.state, this.zipcode, this.phoneNumber, this.ccNumber
+      ));
    }
 }

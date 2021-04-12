@@ -14,6 +14,6 @@ public interface ArtistRepository extends JpaRepository<Artist, Integer> {
    Optional<Artist> findById(Integer id);
    Artist findByName(String query);
 
-   @Query(value = "SELECT a from Artist a WHERE a.name LIKE %:search ORDER BY a.name")
+   @Query(value = "SELECT a from Artist a WHERE a.name LIKE %:search% ORDER BY a.name")
    List<Artist> findAllByNameLike(String search);
 }

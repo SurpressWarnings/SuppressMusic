@@ -32,17 +32,12 @@ public class BrowseController {
    public String showGenres(Model model) {
       List<Genre> genres = genreService.getAll();
       List<Artist> artists = artistService.getAllArtists();
-      List<Integer> artistIds = artists.stream().map(Artist::getId).collect(Collectors.toList());
-      List<String> artistNames =
-            artists.stream().map(Artist::getName).collect(Collectors.toList());
-
       List<Song> songs = songService.getAllSortedSongs();
       List<Album> albums = albumService.getAll();
       List<Format> formats = formatService.getAllFormats();
 
       model.addAttribute("genres", genres);
-      model.addAttribute("artistIds", artistIds);
-      model.addAttribute("artistNames", artistNames);
+      model.addAttribute("artists", artists);
       model.addAttribute("albums", albums);
       model.addAttribute("formats", formats);
       model.addAttribute("songs", songs);

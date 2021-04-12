@@ -9,64 +9,74 @@
 <!--   <link rel="stylesheet" href="/css/genrestyle.css">-->
 </head>
 <nav th:insert="fragments.html :: navigation"></nav>
-<body class="container-fluid">
+<body>
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-6">
+         <table>
+            <tr>
+               <th>Browse By Genre</th>
+            </tr>
+            <tbody th:each="genre: ${genres}">
+            <tr>
+               <td>
+                  <a class="nav-link" th:href="@{/browse/genre(id=${genre.id})}">
+                     <span th:text="${genre.genreType}"></span></a>
+               </td>
+            </tr>
+            </tbody>
+         </table>
+      </div>
 
-   <table>
-      <tr>
-         <th>Browse By Genre</th>
-      </tr>
-      <tbody th:each="genre: ${genres}">
+      <div class="col-6">
+         <table>
+            <tr>
+               <th>Browse By Artist</th>
+            </tr>
+            <tbody th:each="artist: ${artists}">
+            <tr>
+               <td>
+                  <a th:href="@{/browse/artist(id=${artist.id})}">
+                     <span th:text="${artist.name}"></span></a>
+               </td>
+            </tr>
+            </tbody>
+         </table>
+      </div>
+
+   </div>
+   <div class="row">
+      <div class="col-6">
+         <table>
+         <tr>
+            <th>Browse By Album</th>
+         </tr>
+         <tbody th:each="album: ${albums}">
+               <tr>
+                  <td>
+                     <a th:href="@{/browse/album(id=${album.id})}">
+                        <span th:text="${album.title}"></span></a>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <div class="col-6"><table>
+         <tr>
+            <th>Browse By Format</th>
+         </tr>
+         <tbody th:each="format: ${formats}">
          <tr>
             <td>
-               <a class="nav-link" th:href="@{/browse/genre(id=${genre.id})}">
-                  <span th:text="${genre.genreType}"></span></a>
+               <a th:href="@{/browse/format(id=${format.id})}">
+                  <span th:text="${format.formatType}"></span></a>
             </td>
          </tr>
-      </tbody>
-   </table>
-
-   <table>
-      <tr>
-         <th>Browse By Artist</th>
-      </tr>
-      <tbody th:each="artist: ${artists}">
-         <tr>
-            <td>
-               <a th:href="@{/browse/artist(id=${artist.id})}">
-                  <span th:text="${artist.name}"></span></a>
-            </td>
-         </tr>
-      </tbody>
-   </table>
-
-   <table>
-      <tr>
-         <th>Browse By Album</th>
-      </tr>
-      <tbody th:each="album: ${albums}">
-      <tr>
-         <td>
-            <a th:href="@{/browse/album(id=${album.id})}">
-               <span th:text="${album.title}"></span></a>
-         </td>
-      </tr>
-      </tbody>
-   </table>
-
-   <table>
-      <tr>
-         <th>Browse By Format</th>
-      </tr>
-      <tbody th:each="format: ${formats}">
-      <tr>
-         <td>
-            <a th:href="@{/browse/format(id=${format.id})}">
-               <span th:text="${format.formatType}"></span></a>
-         </td>
-      </tr>
-      </tbody>
-   </table>
-
+         </tbody>
+      </table>
+      </div>
+   </div>
+</div>
 <main>
 
    <table>
@@ -81,10 +91,10 @@
       </tr>
       <tr th:each="song: ${songs}">
          <td>
-            <strong><span th:text="${song.songTitle}"></span></strong>
+            <span th:text="${song.songTitle}"></span>
          </td>
          <td>
-            Artist
+            <span th:text="${song.artist.name}"></span>
          </td>
          <td>
             <span th:text="${song.album.title}"></span>
@@ -99,7 +109,7 @@
             <span th:text="${song.price}"></span>
          </td>
          <td>
-            <a href="#">Add to Cart</a>
+            <a th:href="@{/cart/add(id = ${song.id})}">Add to Cart</a>
          </td>
       </tr>
    </table>

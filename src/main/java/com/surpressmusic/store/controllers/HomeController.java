@@ -18,7 +18,6 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import com.surpressmusic.store.model.user.User;
 import com.surpressmusic.store.services.UserService;
 
-
 @Controller
 public class HomeController {
 	
@@ -93,9 +92,9 @@ public class HomeController {
        return "/";
    }
    
+
    @GetMapping("/userdetails")
    public String userdetails() {
 	   return "userdetails";
    }
-
 }

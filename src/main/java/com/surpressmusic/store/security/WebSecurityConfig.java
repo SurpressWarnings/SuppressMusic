@@ -32,10 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		http.authorizeRequests()
-
-				.antMatchers("/", "/register", "/browse/**", "/search/**").permitAll()
+				.antMatchers("/", "/register", "/browse/**", "/search/**", "/cart", "/cart/**").permitAll()
 				.antMatchers("/admin").hasRole("ADMIN")
-
+				.antMatchers("/checkout").hasRole("USER")
 				.and()
 				   .formLogin()
 		            .loginPage("/login")

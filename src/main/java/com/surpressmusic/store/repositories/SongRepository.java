@@ -17,7 +17,9 @@ public interface SongRepository extends JpaRepository<Song, Integer> {
 
    Song findBySongTitle(String title);
 
-   @Query(value = "SELECT s from Song s WHERE s.songTitle LIKE %:search ORDER BY s.songTitle")
+   Song findSongById(Integer id);
+
+   @Query(value = "SELECT s from Song s WHERE s.songTitle LIKE %:search% ORDER BY s.songTitle")
    List<Song> findAllBySongTitleLike(String search);
 
    @Query(value = "SELECT s from Song s WHERE s.album.id = :id ORDER BY s.songTitle")

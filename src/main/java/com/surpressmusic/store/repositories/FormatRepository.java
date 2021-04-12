@@ -11,6 +11,6 @@ import java.util.List;
 public interface FormatRepository extends JpaRepository<Format, Integer> {
    public List<Format> findAll();
 
-   @Query(value = "SELECT f from Format f WHERE f.formatType LIKE %:search ORDER BY f.formatType")
+   @Query(value = "SELECT f from Format f WHERE f.formatType LIKE %:search% ORDER BY f.formatType")
    public List<Format> findAllByFormatTypeLike(String search);
 }

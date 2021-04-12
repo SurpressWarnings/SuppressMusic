@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
    <meta charset="UTF-8">
    <title>Suppress Music - Navigation</title>
@@ -10,10 +11,33 @@
 </head>
 <nav>
    <div th:fragment="navigation" class="navbar navbar-dark bg-dark">
-      <div class="container-fluid">
-            <a class="navbar-brand" href="/home">Suppress Music</a>
-         <div class="navbar-nav">
-            <a class="nav-link" href="/browse">Browse</a>
+      <div class="container-fluid justify-content-between">
+         <div>
+            <a class="navbar-brand" href="/home">
+               Suppress Music</a>
+         </div>
+         <div class="nav justify-content-end">
+            <div class="nav-item" sec:authorize="isAuthenticated()">
+              Welcome, <span sec:authentication="name"></span>!
+            </div>
+            <div class="nav-item" sec:authorize="!isAuthenticated()">
+               <a class="nav-link" href="/login">Login</a>
+            </div>
+            <div class="nav-item">
+               <a class="nav-link" href="/cart">My Cart</a>
+            </div>
+            <div class="nav-item">
+               <a class="nav-link" href="/browse">Browse</a>
+            </div>
+            <div class="nav-item" sec:authorize="isAuthenticated()">
+               <a class="nav-link" href="/logout">Logout</a>
+            </div>
+            <div class="nav-item">
+               <form action="/search/results">
+                  <input type="text" placeholder="Search..." name="query" id="query">
+                  <button type="submit" class="btn-sm">Search</button>
+               </form>
+            </div>
          </div>
       </div>
    </div>
