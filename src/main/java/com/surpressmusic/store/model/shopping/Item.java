@@ -2,6 +2,9 @@ package com.surpressmusic.store.model.shopping;
 
 import com.surpressmusic.store.model.product.Song;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Item {
 
    private Integer id;
@@ -42,6 +45,14 @@ public class Item {
 
    public void setArtist(String artist) {
       this.artist = artist;
+   }
+
+   public String getFormat() {
+      return format;
+   }
+
+   public void setFormat(String format) {
+      this.format = format;
    }
 
    public float getPrice() {

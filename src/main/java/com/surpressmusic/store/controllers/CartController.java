@@ -2,14 +2,23 @@ package com.surpressmusic.store.controllers;
 
 import com.surpressmusic.store.model.product.Song;
 import com.surpressmusic.store.model.shopping.Item;
+import com.surpressmusic.store.model.shopping.Order;
+import com.surpressmusic.store.model.user.User;
+import com.surpressmusic.store.model.user.UserBilling;
+import com.surpressmusic.store.services.OrderService;
 import com.surpressmusic.store.services.SongService;
+import com.surpressmusic.store.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +27,12 @@ public class CartController {
 
    @Autowired
    private SongService songService;
+
+   @Autowired
+   private UserService userService;
+
+   @Autowired
+   private OrderService orderService;
 
    @GetMapping("/cart")
    public String viewCart(HttpSession session) {
@@ -48,17 +63,23 @@ public class CartController {
             int quantity = cart.get(index).getQuantity() + 1;
             cart.get(index).setQuantity(quantity);
          }
+
+         float total = getTotal(cart);
+
+         session.setAttribute("total", total);
          session.setAttribute("cart", cart);
       }
       return "redirect:/cart";
    }
 
    @GetMapping(value = "/cart/remove")
-   public String remove(@RequestParam String id, Model model, HttpSession session) {
+   public String remove(@RequestParam String id,
+                        HttpSession session) {
       Integer intId = Integer.parseInt(id);
       List<Item> cart = (List<Item>) session.getAttribute("cart");
       int index = this.exists(intId, cart);
       cart.remove(index);
+
       session.setAttribute("cart", cart);
       return "redirect:/cart";
    }
@@ -70,5 +91,52 @@ public class CartController {
          }
       }
       return -1;
+   }
+
+   private float getTotal(List<Item> items) {
+      float total = 0;
+      for (Item item : items) {
+         total += item.getPrice();
+      }
+      return total;
+   }
+
+   @GetMapping("/checkout")
+   private String checkout(HttpSession session,
+                           Model model, Authentication auth) {
+      List<Item> items = (List<Item>) session.getAttribute("cart");
+      float total = getTotal(items);
+
+      model.addAttribute("billInfo", new UserBilling());
+      session.setAttribute("total", total);
+      session.setAttribute("cart", items);
+
+      return "checkout";
+   }
+
+   @PostMapping("/checkout")
+   private String postCheckout(@ModelAttribute UserBilling billInfo,
+                               HttpSession session,
+                               Authentication auth, Model model) {
+
+      User user = userService.getUserByUsername(auth.getName());
+
+      List<Item> items = (List<Item>) session.getAttribute("cart");
+
+      float total = 0;
+      if (session.getAttribute("total") != null) {
+         total = (float) session.getAttribute("total");
+      }
+
+      Order order = new Order();
+      order.setStatus("ordered");
+      order.setTotal(total);
+      order.setUserBilling(billInfo.toList());
+      order.setItems(items);
+      order.setUser(user);
+
+      orderService.orderMusic(order);
+
+      return "ordersuccess";
    }
 }
