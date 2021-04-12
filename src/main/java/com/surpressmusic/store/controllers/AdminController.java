@@ -36,7 +36,7 @@ public class AdminController {
    
    @GetMapping("/genre/edit")
    public String showEditGenre() {
-	   return "";
+	   return "genre_edit";
    }
    
    @PostMapping("/genre/edit")
