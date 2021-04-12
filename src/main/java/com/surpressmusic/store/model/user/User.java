@@ -1,7 +1,6 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.model.user;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -17,8 +16,7 @@ public class User {
 
 	@Column(name="password", nullable = false)
 	private String password;
-	
-	@Column(name="roles")
+
 	private String roles;
 
 	public User(String username, String password) {

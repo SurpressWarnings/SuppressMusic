@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import com.surpressmusic.store.model.TheUserDetails;
-import com.surpressmusic.store.model.User;
+import com.surpressmusic.store.model.user.TheUserDetails;
+import com.surpressmusic.store.model.user.User;
 import com.surpressmusic.store.repositories.UserRepository;
 
 @Service
@@ -20,7 +20,6 @@ public class TheUserDetailsService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
 		Optional<User> user = userRepository.findByUsername(username);
 
 		user.orElseThrow(() -> new UsernameNotFoundException("User Not Found: " + username));

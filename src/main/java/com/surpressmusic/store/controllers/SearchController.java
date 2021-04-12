@@ -1,16 +1,11 @@
 package com.surpressmusic.store.controllers;
 
-import com.surpressmusic.store.model.Album;
-import com.surpressmusic.store.model.Artist;
-import com.surpressmusic.store.model.Song;
-import com.surpressmusic.store.services.AlbumService;
-import com.surpressmusic.store.services.ArtistService;
-import com.surpressmusic.store.services.SongService;
+import com.surpressmusic.store.model.product.*;
+import com.surpressmusic.store.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -19,57 +14,30 @@ import java.util.List;
 public class SearchController {
 
    @Autowired
-   private SongService songService;
-
-   @Autowired
-   private ArtistService artistService;
-
-   @Autowired
-   private AlbumService albumService;
+   private SearchService searchService;
 
    @GetMapping("/search")
    public String getSearch() {
       return "search";
    }
 
-   @PostMapping("/searchSong")
-   public String searchSong(@RequestParam String queryStr,
-                            @RequestParam String songQuery, Model model) {
+   @GetMapping("/search/results")
+   public String search(@RequestParam String query, Model model) {
 
-      queryStr = queryStr.toLowerCase();
+      List<Song> songResults = searchService.searchSongs(query);
+      List<Album> albumResults  = searchService.searchAlbums(query);
+      List<Artist> artistResults = searchService.searchArtists(query);
+      List<Format> formatResults = searchService.searchFormats(query);
+      List<Genre> genreResults = searchService.searchGenres(query);
 
-      switch (songQuery) {
-         case "title":
-            Song foundSong = songService.getSongByTitle(queryStr);
-            model.addAttribute("titleResult", foundSong);
-            break;
-
-         case "artist":
-            Artist foundArtist = artistService.getArtistByName(queryStr);
-            List<Song> artistSongs = songService.getSortedSongsByArtist(foundArtist.getName());
-            model.addAttribute("artistResults", artistSongs);
-            break;
-
-         case "album":
-            Album foundAlbum = albumService.getByTitle(queryStr);
-            List<Song> albumSongs= foundAlbum.getSongs();
-            model.addAttribute("albumResults", albumSongs);
-            break;
-      }
+      model.addAttribute("query", query);
+      model.addAttribute("songResults", songResults);
+      model.addAttribute("albumResults", albumResults);
+      model.addAttribute("artistResults", artistResults);
+      model.addAttribute("formatResults", formatResults);
+      model.addAttribute("genreResults", genreResults);
 
       return "search_results";
    }
 
-   @PostMapping("/searchArtist")
-   public String searchArtist(@RequestParam String artistQuery, Model model) {
-
-      return "search_results";
-   }
-
-   @PostMapping("/searchAlbum")
-   public String searchAlbum(@RequestParam String albumQuery, Model model) {
-
-      return "search_results";
-   }
-   
 }

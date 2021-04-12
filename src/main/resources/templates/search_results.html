@@ -1,10 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
    <meta charset="UTF-8">
    <title>Title</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+   <style>
+      li {
+          width: 33%;
+          margin: auto;
+      }
+   </style>
 </head>
+<nav th:insert="fragments.html :: navigation"></nav>
 <body>
 
+<h5><em>Searched for:</em> "<span th:text="${query}"></span>"</h5>
+<h5><em>Did you mean... ?</em></h5>
+
+<div th:if="${songResults != null && songResults.size() > 0}">
+   <h6>Found the following songs:</h6>
+   <table>
+      <tr>
+         <th>Song Title</th>
+         <th>Artist</th>
+         <th>Album</th>
+         <th>Genre</th>
+         <th>Format</th>
+         <th>Price</th>
+         <th></th>
+      </tr>
+      <tr th:each="song: ${songResults}">
+         <td>
+            <strong><span th:text="${song.songTitle}"></span></strong>
+         </td>
+         <td>
+            <span th:text="${song.artist.name}"></span>
+         </td>
+         <td>
+            <span th:text="${song.album.title}"></span>
+         </td>
+         <td>
+            <span th:text="${song.genre.genreType}"></span>
+         </td>
+         <td>
+            <span th:text="${song.format.formatType}"></span>
+         </td>
+         <td>
+            <span th:text="${song.price}"></span>
+         </td>
+         <td>
+            <a th:href="@{/cart/add(id = ${song.id})}">Add to Cart</a>
+         </td>
+      </tr>
+   </table>
+</div>
+
+   <div th:if="${albumResults != null && albumResults.size() > 0}">
+      <em>Found the following albums:</em>
+         <ul th:each="album: ${albumResults}" class="list-group">
+            <li class="list-group-item">
+               <a th:href="@{/browse/album(id=${album.id})}">
+                  <span th:text="${album.title}"></span> by <span th:text="${album.artist}"></span></a>
+            </li>
+         </ul>
+   </div>
+
+<div th:if="${artistResults != null && artistResults.size() > 0}">
+   <em>Found the following artists:</em>
+   <ul th:each="artist: ${artistResults}" class="list-group">
+      <li class="list-group-item">
+         <a th:href="@{/browse/artist(id=${artist.id})}"><span th:text="${artist.name}"></span></a>
+      </li>
+   </ul>
+</div>
+
+<div th:if="${formatResults != null && formatResults.size() > 0}">
+   <em>Found <span th:text="${formatResults.size()}"></span> songs in that format:</em>
+
+   <ul th:each="format: ${formatResults}" class="list-group">>
+      <li class="list-group-item">
+         <a th:href="@{/browse/format(id=${format.id})}">
+            <span th:text="${format.formatType}"></span></a>
+      </li>
+   </ul>
+</div>
+
+<div th:if="${genreResults != null && genreResults.size() > 0}">
+   <em>Found these genres:</em>
+
+   <ul th:each="genre: ${genreResults}" class="list-group">
+      <li class="list-group-item">
+         <a th:href="@{/browse/genre(id=${genre.id})}">
+            <span th:text="${genre.genreType}"></span></a>
+      </li>
+   </ul>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </body>
 </html>
