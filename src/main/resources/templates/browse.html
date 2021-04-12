@@ -99,7 +99,7 @@
             <span th:text="${song.price}"></span>
          </td>
          <td>
-            <a href="#">Add to Cart</a>
+            <a th:href="@{/cart/add(id = ${song.id})}">Add to Cart</a>
          </td>
       </tr>
    </table>
