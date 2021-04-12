@@ -1,4 +1,4 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.model.user;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -17,8 +17,11 @@ public class User {
 
 	@Column(name="password", nullable = false)
 	private String password;
-	
-	@Column(name="roles")
+
+	@OneToOne
+	@JoinColumn(name = "user_billing_id")
+	private UserBilling userBilling;
+
 	private String roles;
 
 	public User(String username, String password) {

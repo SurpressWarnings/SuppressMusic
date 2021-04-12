@@ -1,7 +1,6 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.model.product;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name="formats")

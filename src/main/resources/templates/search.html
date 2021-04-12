@@ -6,47 +6,24 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
    <link rel="stylesheet" href="registerstyle.css">
    <title>Register</title>
 </head>
+<nav th:insert="fragments.html :: navigation"></nav>
+
 <body>
    <div class="container">
      <h2>Search</h2>
       <div>
-         <form action="/searchSong" method="post">
-            <h3>Search for a song...</h3>
-            <ul>
-               <li>
-                  <label for="title">by title</label><br />
-                  <input type="radio" id="title" name="songQuery" value="title" />
-               </li>
-               <li>
-                  <label for="artist">by artist</label><br />
-                  <input type="radio" id="artist" name="songQuery" value="artist" />
-               </li>
-               <li>
-                  <label for="album">by album</label><br />
-                  <input type="radio" id="album" name="songQuery" value="album" />
-               </li>
-            </ul>
-            <input type="text" id="queryStr" name="queryStr" /><br />
-            <button type="submit">Search</button>
-         </form>
-      </div>
-      <div>
-         <form action="/searchArtist" method="post">
-            <h3><label for="artistQuery">Search for an artist...</label></h3>
-            <input type="text" id="artistQuery" name="artistQuery" /><br />
-            <button type="submit">Search</button>
-         </form>
-      </div>
-      <div>
-         <form action="/searchAlbum" method="post">
-            <h3><label for="albumQuery">Search by album...</label></h3>
-            <input type="text" id="albumQuery" name="albumQuery" /><br />
+         <form th:action="@{/search/results}" method="GET">
+            <h3><label for="query">Enter your search here...</label></h3>
+            <input type="text" id="query" name="query" /><br />
             <button type="submit">Search</button>
          </form>
       </div>
    </div>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.surpressmusic.store.model;
+package com.surpressmusic.store.model.product;
 
 import javax.persistence.*;
 
@@ -11,21 +11,23 @@ public class Song {
    @Column(name="song_id")
    private Integer id;
 
-   @Column(nullable = false)
-   private String artist;
-
    @Column(name="song", nullable = false)
    private String songTitle;
 
    @Column
-   private String format;
+   private float price;
+
+   @OneToOne
+   @JoinColumn(name = "artist_id")
+   private Artist artist;
+
+   @OneToOne
+   @JoinColumn(name = "format_id")
+   private Format format;
 
    @OneToOne
    @JoinColumn(name ="genre_id")
    private Genre genre;
-
-   @Column(nullable = false)
-   private float price;
 
    @ManyToOne
    @JoinColumn(name="album_id")
@@ -35,11 +37,11 @@ public class Song {
       return id;
    }
 
-   public String getArtist() {
+   public Artist getArtist() {
       return artist;
    }
 
-   public void setArtist(String artist) {
+   public void setArtist(Artist artist) {
       this.artist = artist;
    }
 
@@ -51,11 +53,19 @@ public class Song {
       this.songTitle = songTitle;
    }
 
-   public String getFormat() {
+   public float getPrice() {
+      return price;
+   }
+
+   public void setPrice(float price) {
+      this.price = price;
+   }
+
+   public Format getFormat() {
       return format;
    }
 
-   public void setFormat(String format) {
+   public void setFormat(Format format) {
       this.format = format;
    }
 

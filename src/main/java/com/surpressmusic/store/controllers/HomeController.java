@@ -15,7 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
-import com.surpressmusic.store.model.User;
+import com.surpressmusic.store.model.user.User;
 import com.surpressmusic.store.services.UserService;
 
 
@@ -25,7 +25,7 @@ public class HomeController {
 	@Autowired
 	private UserService userService;
 
-   @GetMapping({"/", "index"})
+   @GetMapping({"/", "index", "/index", "/home"})
    public String home() {
       return "index";
    }

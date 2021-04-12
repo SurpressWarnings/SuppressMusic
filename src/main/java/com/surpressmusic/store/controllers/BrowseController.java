@@ -1,9 +1,6 @@
 package com.surpressmusic.store.controllers;
 
-import com.surpressmusic.store.model.Album;
-import com.surpressmusic.store.model.Artist;
-import com.surpressmusic.store.model.Genre;
-import com.surpressmusic.store.model.Song;
+import com.surpressmusic.store.model.product.*;
 import com.surpressmusic.store.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class BrowseController {
@@ -34,39 +32,53 @@ public class BrowseController {
    public String showGenres(Model model) {
       List<Genre> genres = genreService.getAll();
       List<Artist> artists = artistService.getAllArtists();
+      List<Integer> artistIds = artists.stream().map(Artist::getId).collect(Collectors.toList());
+      List<String> artistNames =
+            artists.stream().map(Artist::getName).collect(Collectors.toList());
+
       List<Song> songs = songService.getAllSortedSongs();
+      List<Album> albums = albumService.getAll();
+      List<Format> formats = formatService.getAllFormats();
+
       model.addAttribute("genres", genres);
-      model.addAttribute("artists", artists);
+      model.addAttribute("artistIds", artistIds);
+      model.addAttribute("artistNames", artistNames);
+      model.addAttribute("albums", albums);
+      model.addAttribute("formats", formats);
       model.addAttribute("songs", songs);
       return "browse";
    }
 
-   @PostMapping("/browseByGenre")
+   @GetMapping("/browse/genre")
    public String browseGenres(@RequestParam String id, Model model) {
-      Genre genre = genreService.getById(Integer.parseInt(id)).get();
-      List<Song> songs = songService.getSortedSongsByGenre(genre);
+      List<Song> songs = songService.getSongsByGenre(Integer.parseInt(id));
       model.addAttribute("songs", songs);
-      return "by_genre";
+      model.addAttribute("filter", "By Genre");
+      return "browse_results";
    }
 
-//   @PostMapping("/browseByArtist")
-//   public String browseArtists(@RequestParam String id, Model model) {
-//
-//      Artist artist = artistService.getArtistById(Integer.parseInt(id)).get();
-//      List<Song> songs = songService.getSortedSongsByArtist((artist.getName()));
-//      model.addAttribute("songs", songs);
-//      return "by_artist";
-//   }
-
-   @PostMapping("/browseByAlbum")
-   public String browseAlbums(Model model) {
-      List<Album> albums = albumService.getAll();
-      model.addAttribute("albums", albums);
-      return "by_artist";
+   @GetMapping("/browse/artist")
+   public String browseArtists(@RequestParam String id, Model model) {
+      Artist artist = artistService.getArtistById(Integer.parseInt(id)).get();
+      List<Song> songs = songService.getSongsByArtist(artist.getId());
+      model.addAttribute("songs", songs);
+      model.addAttribute("filter", "By Artist");
+      return "browse_results";
    }
 
-//   @PostMapping("/browseByFormat")
-//   public String browseByFormat() {
-//
-//   }
+   @GetMapping("/browse/album")
+   public String browseAlbums(@RequestParam String id, Model model) {
+      List<Song> songs = songService.getSongsByAlbum(Integer.parseInt(id));
+      model.addAttribute("songs", songs);
+      model.addAttribute("filter", "By Album");
+      return "browse_results";
+   }
+
+   @GetMapping("/browse/format")
+   public String browseByFormat(@RequestParam String id, Model model) {
+      List<Song> songs = songService.getSongsByFormat(Integer.parseInt(id));
+      model.addAttribute("songs", songs);
+      model.addAttribute("filter", "By Format");
+      return "browse_results";
+   }
 }
