@@ -1,7 +1,6 @@
 package com.surpressmusic.store.model.shopping;
 
 import com.surpressmusic.store.model.user.User;
-import com.surpressmusic.store.model.user.UserBilling;
 
 import javax.persistence.*;
 import java.util.ArrayList;

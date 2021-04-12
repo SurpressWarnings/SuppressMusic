@@ -1,6 +1,5 @@
 package com.surpressmusic.store.model.user;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

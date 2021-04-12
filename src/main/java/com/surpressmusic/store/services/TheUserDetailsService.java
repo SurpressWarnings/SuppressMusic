@@ -20,7 +20,6 @@ public class TheUserDetailsService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
 		Optional<User> user = userRepository.findByUsername(username);
 
 		user.orElseThrow(() -> new UsernameNotFoundException("User Not Found: " + username));

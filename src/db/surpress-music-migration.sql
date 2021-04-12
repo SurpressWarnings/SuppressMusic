@@ -118,7 +118,7 @@ insert into songs (artist_id, format_id, genre_id, price, song, album_id) values
     (6, "4", 1, 0.99, " Crawling", 6);
 
 insert into formats (format_type) values
-    ("1"),
-    ("2"),
-    ("3"),
-    ("4");
+    ("Digital"),
+    ("Cassette"),
+    ("CD"),
+    ("Vinyl");

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class CartController {
    private OrderService orderService;
 
    @GetMapping("/cart")
-   public String viewCart(HttpSession session) {
+   public String viewCart() {
       return "cart";
    }
 
@@ -102,8 +101,8 @@ public class CartController {
    }
 
    @GetMapping("/checkout")
-   private String checkout(HttpSession session,
-                           Model model, Authentication auth) {
+   public String checkout(HttpSession session,
+                           Model model) {
       List<Item> items = (List<Item>) session.getAttribute("cart");
       float total = getTotal(items);
 
@@ -115,9 +114,9 @@ public class CartController {
    }
 
    @PostMapping("/checkout")
-   private String postCheckout(@ModelAttribute UserBilling billInfo,
+   public String postCheckout(@ModelAttribute UserBilling billInfo,
                                HttpSession session,
-                               Authentication auth, Model model) {
+                               Authentication auth) {
 
       User user = userService.getUserByUsername(auth.getName());
 

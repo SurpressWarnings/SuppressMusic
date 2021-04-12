@@ -1,7 +1,5 @@
 package com.surpressmusic.store.controllers;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,7 +33,7 @@ public class HomeController {
    }
    
    @PostMapping("/login")
-   public String processLogin(@RequestParam String username, @RequestParam String password, ModelMap model) {
+   public String processLogin(@RequestParam String username, @RequestParam String password) {
 	
 		if(!userService.validateEmptyInput(username) || !userService.validateEmptyInput(password))
 		{
@@ -59,7 +57,7 @@ public class HomeController {
 	   {
 		   return "redirect:/admin/";
 	   }
-	   return "redirect:/cart/";
+	   return "redirect:/browse";
    }
    
    @GetMapping("/register")
@@ -70,13 +68,6 @@ public class HomeController {
    @PostMapping("/register")
    public String addUsers(ModelMap model, @RequestParam String username,
    		@RequestParam String psw) {
-//   	User u = new User();
-//   	u.setFirstName(firstname);
-//   	u.setLastName(lastname);
-//   	u.setUsername(username);
-//   	u.setPassword(psw);
-	// Use User's constructor to create user
-	   
 	   	User u = new User(username, psw);
 	   	model.addAttribute("user", u);
 	   	userService.registerUser(u);
@@ -91,7 +82,6 @@ public class HomeController {
        }
        return "/";
    }
-   
 
    @GetMapping("/userdetails")
    public String userdetails() {

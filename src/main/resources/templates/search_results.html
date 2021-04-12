@@ -36,7 +36,7 @@
             <strong><span th:text="${song.songTitle}"></span></strong>
          </td>
          <td>
-            <!--            <em><span th:text="${song.artist.name}"></span></em>-->
+            <span th:text="${song.artist.name}"></span>
          </td>
          <td>
             <span th:text="${song.album.title}"></span>
@@ -45,14 +45,13 @@
             <span th:text="${song.genre.genreType}"></span>
          </td>
          <td>
-            Available in <span th:text="${song.format.formatType}"></span>
+            <span th:text="${song.format.formatType}"></span>
          </td>
          <td>
             <span th:text="${song.price}"></span>
          </td>
          <td>
-            <!--            maybe post to /cart with the song id?-->
-            <a href="#">Add to Cart</a>
+            <a th:href="@{/cart/add(id = ${song.id})}">Add to Cart</a>
          </td>
       </tr>
    </table>
@@ -62,7 +61,8 @@
       <em>Found the following albums:</em>
          <ul th:each="album: ${albumResults}" class="list-group">
             <li class="list-group-item">
-               <a th:href="@{/browse/album(id=${album.id})}"><span th:text="${album.title}"></span> by <span th:text="${album.artist}"></span>
+               <a th:href="@{/browse/album(id=${album.id})}">
+                  <span th:text="${album.title}"></span> by <span th:text="${album.artist}"></span></a>
             </li>
          </ul>
    </div>
@@ -82,7 +82,7 @@
    <ul th:each="format: ${formatResults}" class="list-group">>
       <li class="list-group-item">
          <a th:href="@{/browse/format(id=${format.id})}">
-         <span th:text="${format.formatType}"></span>
+            <span th:text="${format.formatType}"></span></a>
       </li>
    </ul>
 </div>
@@ -93,7 +93,7 @@
    <ul th:each="genre: ${genreResults}" class="list-group">
       <li class="list-group-item">
          <a th:href="@{/browse/genre(id=${genre.id})}">
-         <span th:text="${genre.genreType}"></span>
+            <span th:text="${genre.genreType}"></span></a>
       </li>
    </ul>
 </div>

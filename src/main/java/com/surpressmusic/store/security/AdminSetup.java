@@ -1,5 +1,6 @@
 package com.surpressmusic.store.security;
 
+import com.surpressmusic.store.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import com.surpressmusic.store.repositories.UserRepository;
 import com.surpressmusic.store.services.UserService;
-import com.surpressmusic.store.model.User;
 
 @Component
 public class AdminSetup implements ApplicationListener<ContextRefreshedEvent>{
